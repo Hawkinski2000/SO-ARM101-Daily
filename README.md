@@ -17,7 +17,60 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did:
   - I created this repository and README.
   - [Clone the Repository](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#clone-the-repository): I added files from the [Sim-to-Real-SO-101-Workshop](https://github.com/isaac-sim/Sim-to-Real-SO-101-Workshop) repository.
-  - [Build the Teleop and Simulation Container](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-teleop-and-simulation-container): I built the Teleop and Simulation Container.
-  - [Get the Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#get-the-models): I downloaded the 4 models from Hugging Face.
-- What I learned: Admittedly, not much today since it was mostly just running commands. I suppose I did "learn" that apparently there are 4 models, not just one. I'm not sure why yet, maybe they're slightly different approaches to the same task.
+  - [Build the Teleop and Simulation Container](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-teleop-and-simulation-container): I built the teleop and simulation container.
+  - [Get the Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#get-the-models): I downloaded the four models from Hugging Face.
+- What I learned: Admittedly, not much today since it was mostly just running commands. I suppose I did "learn" that apparently there are four models, not just one. I'm not sure why yet, maybe they're slightly different approaches to the same task.
 - What's next: I will need to [Build the Real Robot and Inference Server](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-real-robot-and-inference-server), which apparently can take up to an hour to complete. It says I technically don't need it until later modules, but I'd like to just follow the course sequentially whenever possible to keep things simple. After that it looks like I will be calibrating the arm.
+
+### 2026-08-02
+
+- What I did:
+  - [Build the Real Robot and Inference Server](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-real-robot-and-inference-server): I built the real robot and inference server. This was tricky for two reasons:
+    - I encountered an error when running
+
+      ```bash
+      ./docker/real/build.sh blackwell
+      ```
+
+      similar to the one mentioned in [this issue](https://github.com/isaac-sim/Sim-to-Real-SO-101-Workshop/issues/4), due to this line in `Dockerfile.blackwell`:
+
+      ```dockerfile
+      RUN python3 -m pip uninstall -y torch torchvision torchaudio && python3 -m pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu130
+      ```
+
+      I believe it's because flash-attention has `-std=c++17` in its [setup.py](https://github.com/Dao-AILab/flash-attention/blob/c46b8144f2d5039d3d3de05da1b668325130bb35/setup.py#L314), but [PyTorch 2.12.0+ requires C++20](https://github.com/pytorch/pytorch/pull/178662). So pinning it to 2.11.0 is a workaround for now.
+
+    - WSL was crashing from this line in `Dockerfile.blackwell`:
+      ```dockerfile
+      RUN export MAX_JOBS=2 && python3 -m pip install flash-attn --no-build-isolation --no-cache-dir
+      ```
+      likely due to insufficient memory since apparently the compilation of flash-attn is extremely memory-hungry. So I just used a prebuilt wheel from [mjun0812/flash-attention-prebuild-wheels](https://github.com/mjun0812/flash-attention-prebuild-wheels) matching torch 2.11.0 + cu130 + Python 3.10, instead of having the compile it myself. I replaced that line with:
+      ```dockerfile
+      RUN python3 -m pip install https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu130torch2.11-cp310-cp310-linux_x86_64.whl
+      ```
+
+  - [Powering On the Robot](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#powering-on-the-robot): I unpacked all of the cables and powered on the leader/follower robots.
+  - [Run the Docker Container for This Course](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#run-the-docker-container-for-this-course): I ran the Docker container, however I had to make some modifications to the provided command because I needed to manually pass in my USB ports due to issues with WSL detecting devices.
+  - [Identify the Teleop Arm Port](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#identify-the-teleop-arm-port): I was unable to detect the USB ports using the
+    ```bash
+    lerobot-find-port
+    ```
+    command due to running everything in WSL. After some research, I figured out I could use a tool called [usbipd-win](https://github.com/dorssel/usbipd-win), and running:
+    ```powershell
+    usbipd attach --wsl --busid=<BUSID>
+    ```
+    in PowerShell made the devices visible to WSL.
+  - [Identify the Robot Arm Port](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#identify-the-robot-arm-port): See the above bullet.
+  - [Calibration Process](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#calibration-process): I calibrated the leader/follower arms.
+  - [Check Your Work](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/07-calibrating-so101.html#check-your-work): I ran
+    ```bash
+    python docker/real/scripts/so101_check_calibration.py
+    ```
+    to check that my calibration was correct. Apparently most of the joints had significant deviations from the means of the calibration dataset and most of them said "⚠ WARN" instead of "✓ PASS". Not sure why this was the case because I definitely moved the joints to their absolute limits. Maybe it's just due to some variations in the print model/quality or motors. However, the section does mention "A warning is advisory and does not necessarily mean the calibration is incorrect", so it's most likely fine.
+  - [Teleoperation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#teleoperation): I was able to teleoperate the robot using the leader arm. This was pretty fun, and admittedly I did practice picking up vials for a bit. It has some quirks and the joints can feel a bit stiff at times, but it's mostly very intuitive to operate.
+
+- What I learned:
+  - I may need to invest in additional RAM at some point due to being unable to compile flash-attention on my own machine.
+  - Using USB devices with WSL is tricky but possible. I'm hoping this doesn't cause issues with the cameras later.
+  - Teleoperating the robot is fairly intuitive.
+- What's next: [Camera Setup](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#camera-setup): I need to set up the wrist-mounted camera and webcam. I'm hoping WSL does not cause major issues with this.
