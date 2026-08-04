@@ -44,7 +44,7 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
       ```dockerfile
       RUN export MAX_JOBS=2 && python3 -m pip install flash-attn --no-build-isolation --no-cache-dir
       ```
-      likely due to insufficient memory since apparently the compilation of flash-attn is extremely memory-hungry. So I just used a prebuilt wheel from [mjun0812/flash-attention-prebuild-wheels](https://github.com/mjun0812/flash-attention-prebuild-wheels) matching torch 2.11.0 + cu130 + Python 3.10, instead of having the compile it myself. I replaced that line with:
+      likely due to insufficient memory since apparently the compilation of flash-attn is extremely memory-hungry. So I just used a prebuilt wheel from [mjun0812/flash-attention-prebuild-wheels](https://github.com/mjun0812/flash-attention-prebuild-wheels) matching torch 2.11.0 + cu130 + Python 3.10, instead of having to compile it myself. I replaced that line with:
       ```dockerfile
       RUN python3 -m pip install https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu130torch2.11-cp310-cp310-linux_x86_64.whl
       ```
@@ -74,3 +74,23 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - Using USB devices with WSL is tricky but possible. I'm hoping this doesn't cause issues with the cameras later.
   - Teleoperating the robot is fairly intuitive.
 - What's next: [Camera Setup](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#camera-setup): I need to set up the wrist-mounted camera and webcam. I'm hoping WSL does not cause major issues with this.
+
+### 2026-08-03
+
+- What I did:
+  - I moved the arms from my desk to the workspace.
+  - I bought a USB extension cable to reach the arms/cameras in the workspace from my computer.
+  - I recalibrated the arms in the workspace and tested picking up some vials.
+  - [Camera Setup](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#camera-setup):
+    - I attached the wrist-mounted camera to the follower arm.
+    - I attempted to detect the camera in WSL using the
+      ```bash
+      lerobot-find-cameras opencv
+      ```
+      command after running
+      ```powershell
+      usbipd attach --wsl --busid=<BUSID>
+      ```
+      but was unable to. I will need to investigate this further tomorrow.
+- What I learned: As I feared, there may be issues with WSL detecting cameras. The process that worked for detecting the arm USB ports unfortunately did not work for the wrist-mounted camera. I will need to investigate this further.
+- What's next: Hopefully I will find a way to detect the wrist-mounted camera and webcam in WSL. Then, the next step is to [Run Teleoperation With Cameras](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#run-teleoperation-with-cameras).
