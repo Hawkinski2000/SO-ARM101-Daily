@@ -94,3 +94,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
       but was unable to. I will need to investigate this further tomorrow.
 - What I learned: As I feared, there may be issues with WSL detecting cameras. The process that worked for detecting the arm USB ports unfortunately did not work for the wrist-mounted camera. I will need to investigate this further.
 - What's next: Hopefully I will find a way to detect the wrist-mounted camera and webcam in WSL. Then, the next step is to [Run Teleoperation With Cameras](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#run-teleoperation-with-cameras).
+
+### 2026-08-04
+
+- What I did:
+  - I spent some time trying to get the wrist-mounted camera detected in WSL. Apparently WSL doesn't support USB webcams by default, so I built a custom kernel (with a lot of help from Claude) to fix that.
+  - I was able to detect `/dev/video0` in WSL, but hit a new problem: frames come through corrupted, seemingly because streaming video over `usbip` just isn't reliable.
+- What I learned: Getting USB cameras to work in WSL is very tricky. I will once again need to do more research.
+- What's next: I'm going to try capturing the camera on the Windows side and stream the frames into WSL, apparently that might work. Or maybe I'll find an issue somewhere that mentions a solution.
