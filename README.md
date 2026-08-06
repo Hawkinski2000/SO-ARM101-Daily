@@ -102,3 +102,13 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I was able to detect `/dev/video0` in WSL, but hit a new problem: frames come through corrupted, seemingly because streaming video over `usbip` just isn't reliable.
 - What I learned: Getting USB cameras to work in WSL is very tricky. I will once again need to do more research.
 - What's next: I'm going to try capturing the camera on the Windows side and stream the frames into WSL, apparently that might work. Or maybe I'll find an issue somewhere that mentions a solution.
+
+### 2026-08-05
+
+- What I did:
+  - I decided to just install Ubuntu on a separate drive instead of trying to make WSL work. There have been too many workarounds, and I'm afraid things will only get more difficult.
+  - I ordered a [2TB SSD](https://a.co/d/0erEIk2Q) to install and boot Ubuntu on. I realize this is likely overkill just for Ubuntu, but I may want the extra storage space in the future for datasets, AI models, etc.
+  - I ordered a [128GB flash drive](https://a.co/d/020EsMnX). Yes, also overkill, but it might be useful.
+  - I read the [Install Ubuntu Desktop](https://ubuntu.com/desktop/docs/en/latest/tutorial/install-ubuntu-desktop/#install-ubuntu-desktop) tutorial.
+- What I learned: Installing Ubuntu is probably not as scary as I'd initially thought. I probably should have done this initially since I was hearing about the difficulties people were having with running the SO-ARM101 and/or cameras with WSL, and early in the course it explicitly mentions in the [Computer Hardware Prerequisites](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/02-how-to-take-this-course.html#computer-hardware-prerequisites) section that they tested the workshop on Ubuntu Linux 24.04, with no mention of other operating systems.
+- What's next: I should receive the SSD and flash drive tomorrow. I'll have to open my case to install the SSD but it should be quick. Installing Ubuntu shouldn't be too painful, and then I will have to repeat most of the course to get to where I left off, but I'm already familiar with the process. Hopefully then the cameras will work!
