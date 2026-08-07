@@ -112,3 +112,13 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I read the [Install Ubuntu Desktop](https://ubuntu.com/desktop/docs/en/latest/tutorial/install-ubuntu-desktop/#install-ubuntu-desktop) tutorial.
 - What I learned: Installing Ubuntu is probably not as scary as I'd initially thought. I probably should have done this initially since I was hearing about the difficulties people were having with running the SO-ARM101 and/or cameras with WSL, and early in the course it explicitly mentions in the [Computer Hardware Prerequisites](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/02-how-to-take-this-course.html#computer-hardware-prerequisites) section that they tested the workshop on Ubuntu Linux 24.04, with no mention of other operating systems.
 - What's next: I should receive the SSD and flash drive tomorrow. I'll have to open my case to install the SSD but it should be quick. Installing Ubuntu shouldn't be too painful, and then I will have to repeat most of the course to get to where I left off, but I'm already familiar with the process. Hopefully then the cameras will work!
+
+### 2026-08-06
+
+- What I did:
+  - I installed the SSD in my computer.
+  - I downloaded the Ubuntu image to my flash drive.
+  - I installed Ubuntu on my new SSD.
+  - I played around with Ubuntu for a bit and installed some basic apps like Chrome and Visual Studio Code.
+- What I learned: Installing Ubuntu was pretty easy. It will take some getting used to since the UI, shortcuts, navigating tabs, etc. are very different from Windows.
+- What's next: I will need to repeat the [Get the Code and Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#get-the-code-and-models) section of the course now that I'm on Ubuntu, starting with [Build the Teleop and Simulation Container](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-teleop-and-simulation-container).
