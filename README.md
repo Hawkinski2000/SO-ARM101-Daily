@@ -122,3 +122,13 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I played around with Ubuntu for a bit and installed some basic apps like Chrome and Visual Studio Code.
 - What I learned: Installing Ubuntu was pretty easy. It will take some getting used to since the UI, shortcuts, navigating tabs, etc. are very different from Windows.
 - What's next: I will need to repeat the [Get the Code and Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#get-the-code-and-models) section of the course now that I'm on Ubuntu, starting with [Build the Teleop and Simulation Container](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-teleop-and-simulation-container).
+
+### 2026-08-07
+
+- What I did:
+  - [Build the Teleop and Simulation Container](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-teleop-and-simulation-container): I built the teleop and simulation container (again) on Ubuntu.
+  - [Build the Real Robot and Inference Server](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#build-the-real-robot-and-inference-server): I built the real robot and inference server (again) on Ubuntu. 
+  - [Get the Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/06-get-the-code.html#get-the-models): I downloaded the four models from Hugging Face (again) on Ubuntu.
+  - I recalibrated and tested the arms.
+- What I learned: It's much easier to follow the course when the default commands work, like `lerobot-find-port`, instead of finding workarounds due to WSL quirks.
+- What's next: Hopefully now I can get the cameras to work and continue where I left off!
