@@ -132,3 +132,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I recalibrated and tested the arms.
 - What I learned: It's much easier to follow the course when the default commands work, like `lerobot-find-port`, instead of finding workarounds due to WSL quirks.
 - What's next: Hopefully now I can get the cameras to work and continue where I left off!
+
+### 2026-08-08
+
+- What I did:
+  - [Camera Setup](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#camera-setup): I was finally able to detect the cameras!
+  - [Run Teleoperation With Cameras](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#run-teleoperation-with-cameras): I ran teleoperation with the wrist-mounted camera and webcam. 
+- What I learned: I can see why this might be a tricky task for a model to learn, and why it's probably necessary to have a second external camera, because the wrist-mounted camera only provides a very narrow view of what the arm happens to be currently pointed at.
+- What's next: [Sim-to-Real Strategy 1: Domain Randomization](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#sim-to-real-strategy-1-domain-randomization): It looks like I will be teleoperating the arm in simulation with Isaac Lab, which should be very interesting!
