@@ -140,3 +140,12 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - [Run Teleoperation With Cameras](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/08-operating-so101.html#run-teleoperation-with-cameras): I ran teleoperation with the wrist-mounted camera and webcam. 
 - What I learned: I can see why this might be a tricky task for a model to learn, and why it's probably necessary to have a second external camera, because the wrist-mounted camera only provides a very narrow view of what the arm happens to be currently pointed at.
 - What's next: [Sim-to-Real Strategy 1: Domain Randomization](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#sim-to-real-strategy-1-domain-randomization): It looks like I will be teleoperating the arm in simulation with Isaac Lab, which should be very interesting!
+
+### 2026-08-09
+
+- What I did:
+  - I was getting a seg fault when starting Isaac Sim. Apparently it was an issue with the GPU driver so I downgraded that and it worked.
+  - I was missing assets for the simulation because the asset files were just Git LFS pointer files, not the real data. I pulled the actual files from the repo and was able to launch the simulation.
+  - [Practice Teleoperation in Simulation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#practice-teleoperation-in-simulation): I was able to teleoperate the arm in the Isaac Sim simulation which was a very interesting and somewhat strange experience. There are some quirks with the physics and such and the environment had a weird sort of uncanny familiarity to it.
+- What I learned: Teleoperating the robot in simulation unfortunately does not feel like a vritual exact replica of the real thing, and there are some subtle but noticable quirks with friction, collisions, gravity, etc.
+- What's next: [Start Recording Demonstrations](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#start-recording-demonstrations): The next step will be to actually start recording dataset examples in the simulation.
