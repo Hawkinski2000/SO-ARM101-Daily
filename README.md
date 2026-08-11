@@ -149,3 +149,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - [Practice Teleoperation in Simulation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#practice-teleoperation-in-simulation): I was able to teleoperate the arm in the Isaac Sim simulation which was a very interesting and somewhat strange experience. There are some quirks with the physics and such and the environment had a weird sort of uncanny familiarity to it.
 - What I learned: Teleoperating the robot in simulation unfortunately does not feel like a vritual exact replica of the real thing, and there are some subtle but noticable quirks with friction, collisions, gravity, etc.
 - What's next: [Start Recording Demonstrations](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#start-recording-demonstrations): The next step will be to actually start recording dataset examples in the simulation.
+
+### 2026-08-10
+
+- What I did: [Recording Demonstrations](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#recording-demonstrations): I recorded my first 5 demonstrations in simulation. I had to stop there because Isaac Sim would crash, but only and consistently after trying to save the second recording in that session. I think it might be related to a "Svt[warn]: Failed to set thread priority: Invalid argument" error I was getting after the episode gets copied to the CPU to be processed and saved.
+- What I learned: Recording demonstrations is actually surprisinlgy hard, but it seems like I'm rapidly improving.
+- What's next: I will need to investigate the crashing issue since setting up Isaac Sim for every recording is very time-consuming, and apparently I should aim for at least 70 of them.
