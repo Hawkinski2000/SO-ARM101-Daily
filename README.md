@@ -153,5 +153,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 ### 2026-08-10
 
 - What I did: [Recording Demonstrations](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#recording-demonstrations): I recorded my first 5 demonstrations in simulation. I had to stop there because Isaac Sim would crash, but only and consistently after trying to save the second recording in that session. I think it might be related to a "Svt[warn]: Failed to set thread priority: Invalid argument" error I was getting after the episode gets copied to the CPU to be processed and saved.
-- What I learned: Recording demonstrations is actually surprisinlgy hard, but it seems like I'm rapidly improving.
+- What I learned: Recording demonstrations is actually surprisingly hard, but it seems like I'm rapidly improving.
 - What's next: I will need to investigate the crashing issue since setting up Isaac Sim for every recording is very time-consuming, and apparently I should aim for at least 70 of them.
+
+### 2026-08-11
+
+- What I did: I discovered that the issue from yesterday that was causing Isaac Sim to crash was actually a memory issue, not anything related to the "Svt[warn]: Failed to set thread priority: Invalid argument" warning. After saving an episode, it seems like they accumulate in memory for some reason. Attempting to save a second episode was using up all of my memory, so Isaac Sim was being killed. I added a 16GB swapfile as a workaround and successfully recorded ~6 demonstrations in a row with no crashes.
+- What I learned: Once again, I have more evidence that maybe I need to invest in more RAM.
+- What's next: I think now I can actually (hopefully) start recording a meaningful number of demonstrations without interruptions.
