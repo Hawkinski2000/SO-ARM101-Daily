@@ -166,4 +166,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I started a new dataset from scratch because the previous one was cluttered with tests from when I was debugging the crashing issue, and I only had 12 recordings anyway. Today I recorded 10 high quality demonstrations in a row without a single crash.
 - What I learned: I'm getting a bit better at racking vials smoothly and efficiently.
-- What's next: I will need to continue recording demonstrations until I reach at least 70, or ideally maybe more like 100. I'll probably try to do at least 10-20 per day. 
+- What's next: I will need to continue recording demonstrations until I reach at least 70, or ideally maybe more like 100. I'll probably try to do at least 10-20 per day.
+
+### 2026-08-13
+
+- What I did: I just recorded 10 more demonstrations today. I'm at 20 now.
+- What I learned: Not really much today besides improving slightly at operating the arm, if that counts.
+- What's next: I will need to continue recording demonstrations until I reach at least 70, or ideally maybe more like 100. I'll probably try to do at least 10-20 per day.
