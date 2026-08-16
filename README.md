@@ -179,3 +179,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I just recorded 30 more demonstrations today. I'm at 50 now.
 - What I learned: Not really much today besides improving slightly at operating the arm, if that counts.
 - What's next: I will need to continue recording demonstrations until I reach at least 70, or ideally maybe more like 100. I'll probably try to do at least 10-20 per day.
+
+### 2026-08-15
+
+- What I did:
+  - I recorded another 50 demonstrations today. I'm at 100 now. I think that should be enough.
+  - I read the remainder of the [Sim-to-Real Strategy 1: Domain Randomization](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#sim-to-real-strategy-1-domain-randomization) section.
+- What I learned: I learned more about domain randomization and what specific conditions are randomized between resets of the simulation.
+- What's next: Next is the [Isaac GR00T: Vision-Language-Action Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#isaac-gr00t-vision-language-action-models) section, which should be very interesting!
