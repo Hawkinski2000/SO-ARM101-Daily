@@ -187,3 +187,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I read the remainder of the [Sim-to-Real Strategy 1: Domain Randomization](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/09-strategy1-dr-teleop.html#sim-to-real-strategy-1-domain-randomization) section.
 - What I learned: I learned more about domain randomization and what specific conditions are randomized between resets of the simulation.
 - What's next: Next is the [Isaac GR00T: Vision-Language-Action Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#isaac-gr00t-vision-language-action-models) section, which should be very interesting!
+
+### 2026-08-16
+
+- What I did: I read through the [Isaac GR00T: Vision-Language-Action Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#isaac-gr00t-vision-language-action-models) page.
+- What I learned: I learned about GR00T and how to post-train it on a dataset.
+- What's next: I will likely try to complete the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section rather than just using the provided fine-tuned models. I think it should be an interesting learning experience. 
