@@ -192,4 +192,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I read through the [Isaac GR00T: Vision-Language-Action Models](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#isaac-gr00t-vision-language-action-models) page.
 - What I learned: I learned about GR00T and how to post-train it on a dataset.
-- What's next: I will likely try to complete the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section rather than just using the provided fine-tuned models. I think it should be an interesting learning experience. 
+- What's next: I will likely try to complete the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section rather than just using the provided fine-tuned models. I think it should be an interesting learning experience.
+
+### 2026-08-17
+
+- What I did: I attempted the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section, but the script that ran on the Brev instance failed. I think I found a workaround, but I will need to attempt the fine-tuning tomorrow when I have more time.
+- What I learned: Brev is cool. I have used cloud GPU instances in the past like Lambda and Runpod, but it seems like Brev's "Launchables" are more like pre-configured projects that makes the setup a lot faster/easier than just using a generic empty machine.
+- What's next: Hopefully I will figure out the fine-tuning tomorrow.
