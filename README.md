@@ -199,3 +199,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I attempted the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section, but the script that ran on the Brev instance failed. I think I found a workaround, but I will need to attempt the fine-tuning tomorrow when I have more time.
 - What I learned: Brev is cool. I have used cloud GPU instances in the past like Lambda and Runpod, but it seems like Brev's "Launchables" are more like pre-configured projects that makes the setup a lot faster/easier than just using a generic empty machine.
 - What's next: Hopefully I will figure out the fine-tuning tomorrow.
+
+### 2026-08-18
+
+- What I did: I was able to start fine-tuning GR00T on the Brev instance, however I had to stop it at ~20% progress because it's going to take another 2+ hours to complete, and I'm out of time tonight. Unfortunately, for some reason a checkpoint was not saved, so I will have to restart it in the morning. Brev preserves all files on the instance when it's stopped though, so it should be fairly quick to get started tomorrow morning.
+- What I learned: Time management and checkpoints are important for training models.
+- What's next: Hopefully I will finally be able to fine-tune GR00T on my dataset. After that is the [Sim Evaluation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/11-sim-evaluation.html#sim-evaluation) section.
