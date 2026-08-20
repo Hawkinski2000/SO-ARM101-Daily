@@ -205,3 +205,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I was able to start fine-tuning GR00T on the Brev instance, however I had to stop it at ~20% progress because it's going to take another 2+ hours to complete, and I'm out of time tonight. Unfortunately, for some reason a checkpoint was not saved, so I will have to restart it in the morning. Brev preserves all files on the instance when it's stopped though, so it should be fairly quick to get started tomorrow morning.
 - What I learned: Time management and checkpoints are important for training models.
 - What's next: Hopefully I will finally be able to fine-tune GR00T on my dataset. After that is the [Sim Evaluation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/11-sim-evaluation.html#sim-evaluation) section.
+
+### 2026-08-19
+
+- What I did: I successfully fine-tuned GR00T on my dataset of recordings on the Brev instance and then uploaded the model to a [Hugging Face repo](https://huggingface.co/Hawkinski/grootn16-finetune_Hawkinski_SOARM-101/tree/main). It took much longer than expected so I'm glad I started it early today.
+- What I learned: Training/fine-tuning GR00T takes a very long time, even for an H100.
+- What's next: Tomorrow I will start the [Sim Evaluation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/11-sim-evaluation.html#sim-evaluation) section.
