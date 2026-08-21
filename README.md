@@ -211,3 +211,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I successfully fine-tuned GR00T on my dataset of recordings on the Brev instance and then uploaded the model to a [Hugging Face repo](https://huggingface.co/Hawkinski/grootn16-finetune_Hawkinski_SOARM-101/tree/main). It took much longer than expected so I'm glad I started it early today.
 - What I learned: Training/fine-tuning GR00T takes a very long time, even for an H100.
 - What's next: Tomorrow I will start the [Sim Evaluation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/11-sim-evaluation.html#sim-evaluation) section.
+
+### 2026-08-20
+
+- What I did: I completed the [Sim Evaluation](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/11-sim-evaluation.html#sim-evaluation) section. It was pretty interesting seeing the model I trained replicating the movements I recorded during the demonstrations, however the policy was not able to put a single vial in the rack, though it was able to pick one up a few times. It usually just gets close to the vials like it's thinking about picking one up but rarely actually does.
+- What I learned: It's very interesting how, despite only training on 100 examples, the model has clearly learned about the "putting vials in the rack" task. It was clearly moving towards them and opening the gripper very similar to the way I did during the demonstrations.
+- What's next: I'm curious why my policy is struggling to even put a single vial in the rack. I think I'll try using the provided `aravindhs-NV/grootn16-finetune_sreetz-so101_teleop_vials_rack_left` model just to see if the performance is noticably different.
