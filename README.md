@@ -241,3 +241,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I completed the [Sim-to-Real Strategy 2: Co-Training With Real Data](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/13-strategy2-cotraining.html#sim-to-real-strategy-2-co-training-with-real-data) section.
 - What I learned: I was skeptical that combining just 5 real demonstrations with the simulated ones and training on that would do anything noticable, but it seemed like the `aravindhs-NV/grootn16-finetune_sreetz-so101_teleop_vials_rack_left_sim_and_real` model was running much more smoothly than the original, which was trained on only simulated demonstrations. The arm appeared to be much more determined to get the vials into the rack this time, however its actual success rate at this was still not very good.
 - What's next: Tomorrow I will start the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section.
+
+### 2026-08-25
+
+- What I did: I just read the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section because I was a bit short on time today.
+- What I learned: I figured we would be generating or augmenting data in some way instead of just manually performing all of the demonstrations. Cosmos seems super interesting. Apparently it's a "world foundation model", so I wonder if it's similar at all to "JEPA" which I've also heard is a world model, and which Yann LeCun has made some interesting claims about.
+- What's next: Tomorrow I will actually complete the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section.
