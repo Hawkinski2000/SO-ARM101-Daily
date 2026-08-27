@@ -247,3 +247,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I just read the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section because I was a bit short on time today.
 - What I learned: I figured we would be generating or augmenting data in some way instead of just manually performing all of the demonstrations. Cosmos seems super interesting. Apparently it's a "world foundation model", so I wonder if it's similar at all to "JEPA" which I've also heard is a world model, and which Yann LeCun has made some interesting claims about.
 - What's next: Tomorrow I will actually complete the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section.
+
+### 2026-08-26
+
+- What I did: I tried the first model (`aravindhs-NV/so100-orig-groot-vials-rack-left-cosmos-70`) in the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section.
+- What I learned: The `aravindhs-NV/so100-orig-groot-vials-rack-left-cosmos-70` did not perform as well as I'd hoped. The arm consistently gets stuck when trying to pick up a vial and just sort of rests its gripper on the mat and gives up. Maybe the nearly 1:1 ratio of 75 sim episodes + 70 Cosmos-augmented episodes is the problem, specifically the number of Cosmos-augmented episodes may be excessive.
+- What's next: I'll try the other `aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02` model tomorrow, which was only trained on 7 Cosmos-augmented episodes. Maybe the augmented episodes can help in smaller amounts but they can become detrimental if they start to overpower the actual sim or real recordings.
