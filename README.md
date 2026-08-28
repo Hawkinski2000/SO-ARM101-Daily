@@ -251,5 +251,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 ### 2026-08-26
 
 - What I did: I tried the first model (`aravindhs-NV/so100-orig-groot-vials-rack-left-cosmos-70`) in the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section.
-- What I learned: The `aravindhs-NV/so100-orig-groot-vials-rack-left-cosmos-70` did not perform as well as I'd hoped. The arm consistently gets stuck when trying to pick up a vial and just sort of rests its gripper on the mat and gives up. Maybe the nearly 1:1 ratio of 75 sim episodes + 70 Cosmos-augmented episodes is the problem, specifically the number of Cosmos-augmented episodes may be excessive.
+- What I learned: The `aravindhs-NV/so100-orig-groot-vials-rack-left-cosmos-70` model did not perform as well as I'd hoped. The arm consistently gets stuck when trying to pick up a vial and just sort of rests its gripper on the mat and gives up. Maybe the nearly 1:1 ratio of 75 sim episodes + 70 Cosmos-augmented episodes is the problem, specifically the number of Cosmos-augmented episodes may be excessive.
 - What's next: I'll try the other `aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02` model tomorrow, which was only trained on 7 Cosmos-augmented episodes. Maybe the augmented episodes can help in smaller amounts but they can become detrimental if they start to overpower the actual sim or real recordings.
+
+### 2026-08-27
+
+- What I did: I tried the other (`aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02`) model in the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section today.
+- What I learned: The `aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02` model did not perform noticably better than the other model. I'm wondering if maybe this is just a typical sim-to-real gap, and maybe I should try actually training on some demonstrations in my actual workspace.
+- What's next: I'll continue with the course and start the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section, however I will likely return to some of these previous sections to see how I could possibly modify things to improve the performance.
