@@ -259,3 +259,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tried the other (`aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02`) model in the [Sim-to-Real Strategy 3: Augmenting Datasets With Cosmos](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/14-strategy3-cosmos.html) section today.
 - What I learned: The `aravindhs-NV/sreetz-so101_teleop_vials_rack_left_augment_02` model did not perform noticably better than the other model. I'm wondering if maybe this is just a typical sim-to-real gap, and maybe I should try actually training on some demonstrations in my actual workspace.
 - What's next: I'll continue with the course and start the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section, however I will likely return to some of these previous sections to see how I could possibly modify things to improve the performance.
+
+### 2026-08-28
+
+- What I did: I read through the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section today.
+- What I learned: SAGE and GapONet are super interesting. I figured there must be a more elegant way to close the sim-to-real gap than just trial and error. It's funny to me that training a neural net like GapONet can help solve problems related to the training of other neural nets. I think they may potentially be useful for improving some of the issues I've had with my arm's performance. 
+- What's next: Tomorrow I will look into SAGE and GapONet further. 
