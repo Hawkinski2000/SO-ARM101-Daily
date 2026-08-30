@@ -264,4 +264,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I read through the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section today.
 - What I learned: SAGE and GapONet are super interesting. I figured there must be a more elegant way to close the sim-to-real gap than just trial and error. It's funny to me that training a neural net like GapONet can help solve problems related to the training of other neural nets. I think they may potentially be useful for improving some of the issues I've had with my arm's performance. 
-- What's next: Tomorrow I will look into SAGE and GapONet further. 
+- What's next: Tomorrow I will look into SAGE and GapONet further.
+
+### 2026-08-29
+
+- What I did: I completed the [Run Simulation Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-simulation-data-collection) step in the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section today. The arm just sort of scraped its gripper along the ground in Isaac Sim which was a bit odd.
+- What I learned: I'll need to actually complete the [Run Real Robot Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-real-robot-data-collection) step tomorrow, but if I understand correctly, the robot will do what it just did in the simulation in real life and the error or deviation between the joint positions, velocities, and torques will be measured.
+- What's next: Tomorrow I'll complete the [Run Real Robot Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-real-robot-data-collection) step.
