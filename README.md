@@ -277,3 +277,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I completed the [Run Real Robot Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-real-robot-data-collection) step in the [Sim-to-Real Strategy 4: Measuring and Closing the Gap With SAGE + GapONet](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#sim-to-real-strategy-4-measuring-and-closing-the-gap-with-sage-gaponet) section today. I had the arm perform the same "pick_place" motion in real life where, as expected, the arm sort of just scraped its gripper along the floor of the workspace.
 - What I learned: There are definitely some significant deviations between the sim and real data judging by the plots generated for the pick_place motion. The position plots are generally fairly close or even almost exactly the same between sim and real, however the velocity and torque plots are extremely far off at times.
 - What's next: It looks like GapONet may not be integrated with GR00T and the SO-101 yet, however it seems very promising for closing this sim-to-real gap. Tomorrow I may look into it in more detail and see how feasible it might be to try integrating it.
+
+### 2026-08-31
+
+- What I did: I just did some brief investigation into the [GapONet](https://github.com/jiemingcui/gaponet) repository today.
+- What I learned: While it seems like GapONet is mainly designed for humanoid robots at the moment, the course explicity mentions and shows an example of how it was used for the SO-101, so there is definitley a way to get it working.
+- What's next: I'll need to read through the SAGE/GapONet repositories more thoroughly.
