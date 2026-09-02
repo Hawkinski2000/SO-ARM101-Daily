@@ -283,3 +283,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I just did some brief investigation into the [GapONet](https://github.com/jiemingcui/gaponet) repository today.
 - What I learned: While it seems like GapONet is mainly designed for humanoid robots at the moment, the course explicity mentions and shows an example of how it was used for the SO-101, so there is definitley a way to get it working.
 - What's next: I'll need to read through the SAGE/GapONet repositories more thoroughly.
+
+### 2026-09-01
+
+- What I did: I just did some more reading of the [GapONet](https://github.com/jiemingcui/gaponet) repository today.
+- What I learned: If I understand correctly, GapONet uses my sim and real SAGE outputs for specific motions with its RL model. I think a small issue is that the sim and real outputs were samples at different frequencies (50Hz for real and 200Hz for sim). I might be able to just modify the command provided in the course for the [Run Simulation Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-simulation-data-collection) section and repeat the data collection at the correct frequency.
+- What's next: I'll try modifying that command and repeating the sim data collection tomorrow.
