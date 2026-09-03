@@ -287,5 +287,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 ### 2026-09-01
 
 - What I did: I just did some more reading of the [GapONet](https://github.com/jiemingcui/gaponet) repository today.
-- What I learned: If I understand correctly, GapONet uses my sim and real SAGE outputs for specific motions with its RL model. I think a small issue is that the sim and real outputs were samples at different frequencies (50Hz for real and 200Hz for sim). I might be able to just modify the command provided in the course for the [Run Simulation Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-simulation-data-collection) section and repeat the data collection at the correct frequency.
+- What I learned: If I understand correctly, GapONet uses my sim and real SAGE outputs for specific motions with its RL model. I think a small issue is that the sim and real outputs were sampled at different frequencies (50Hz for real and 200Hz for sim). I might be able to just modify the command provided in the course for the [Run Simulation Data Collection](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/15-strategy4-sage.html#run-simulation-data-collection) section and repeat the data collection at the correct frequency.
 - What's next: I'll try modifying that command and repeating the sim data collection tomorrow.
+
+### 2026-09-02
+
+- What I did: I went through the [Installation](https://github.com/jiemingcui/gaponet#installation) steps for [GapONet](https://github.com/jiemingcui/gaponet) today.
+- What I learned: I may have been mistaken about needing both the real and sim motion data, so the different sampling rates may not be an issue. According to the [Motion Data](https://github.com/jiemingcui/gaponet#motion-data) section of the README, the expected format for the motion data only appears to contain keys for real data.
+- What's next: I'll start working through the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the README tomorrow to see if I can use the SO-101 with GapONet.
