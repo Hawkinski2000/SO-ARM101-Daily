@@ -295,3 +295,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I went through the [Installation](https://github.com/jiemingcui/gaponet#installation) steps for [GapONet](https://github.com/jiemingcui/gaponet) today.
 - What I learned: I may have been mistaken about needing both the real and sim motion data, so the different sampling rates may not be an issue. According to the [Motion Data](https://github.com/jiemingcui/gaponet#motion-data) section of the README, the expected format for the motion data only appears to contain keys for real data.
 - What's next: I'll start working through the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the README tomorrow to see if I can use the SO-101 with GapONet.
+
+### 2026-09-03
+
+- What I did: I started added the files/folders mentioned in the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the GapONet README for the SO-101.
+- What I learned: I'm realizing adapting the GapONet repository to work with the SO-101 is a pretty significant task, but I think it's possible.
+- What's next: I'll continue adapting the files/code for the SO-101. This will likely require extensive reading and comparing of the existing code/files of the repository to understand how everything is supposed to fit together. 
