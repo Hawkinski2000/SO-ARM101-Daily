@@ -298,6 +298,12 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 ### 2026-09-03
 
-- What I did: I started added the files/folders mentioned in the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the GapONet README for the SO-101.
+- What I did: I started adding the files/folders mentioned in the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the GapONet README for the SO-101.
 - What I learned: I'm realizing adapting the GapONet repository to work with the SO-101 is a pretty significant task, but I think it's possible.
-- What's next: I'll continue adapting the files/code for the SO-101. This will likely require extensive reading and comparing of the existing code/files of the repository to understand how everything is supposed to fit together. 
+- What's next: I'll continue adapting the files/code for the SO-101. This will likely require extensive reading and comparing of the existing code/files of the repository to understand how everything is supposed to fit together.
+
+### 2026-09-04
+
+- What I did: I continued modifying the files I copied in GapONet to work with the SO-101, like `gaponet/source/sim2real/sim2real/tasks/so_101/__init__.py`, and parts of `gaponet/source/sim2real/sim2real/tasks/so_101/so_101_env.py` and `gaponet/source/sim2real/sim2real/tasks/so_101/so_101_env_cfg.py`.
+- What I learned: Some of the files I'm supposed to modify according to the [Adding a New Robot](https://github.com/jiemingcui/gaponet#adding-a-new-robot) section of the README look pretty scary. Like, for example, `gaponet/source/sim2real/sim2real/tasks/so_101/so_101_env.py`, which is currently 1,033 lines long. I'm hoping much of this is either redundant for the SO-101 or does not depend on a specific robot and can be left alone.
+- What's next: I'll continue adapting the files/code for the SO-101.
