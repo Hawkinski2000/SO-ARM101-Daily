@@ -1,0 +1,295 @@
+env:
+  viewer:
+    eye:
+    - 7.5
+    - 7.5
+    - 7.5
+    lookat:
+    - 0.0
+    - 0.0
+    - 0.0
+    cam_prim_path: /OmniverseKit_Persp
+    resolution:
+    - 1280
+    - 720
+    origin_type: world
+    env_index: 0
+    asset_name: null
+    body_name: null
+  sim:
+    physics_prim_path: /physicsScene
+    device: cuda:0
+    dt: 0.005
+    render_interval: 4
+    gravity:
+    - 0.0
+    - 0.0
+    - -9.81
+    enable_scene_query_support: false
+    use_fabric: true
+    physx:
+      solver_type: 1
+      min_position_iteration_count: 1
+      max_position_iteration_count: 255
+      min_velocity_iteration_count: 0
+      max_velocity_iteration_count: 255
+      enable_ccd: false
+      enable_stabilization: true
+      enable_enhanced_determinism: false
+      bounce_threshold_velocity: 0.5
+      friction_offset_threshold: 0.04
+      friction_correlation_distance: 0.025
+      gpu_max_rigid_contact_count: 8388608
+      gpu_max_rigid_patch_count: 163840
+      gpu_found_lost_pairs_capacity: 16777216
+      gpu_found_lost_aggregate_pairs_capacity: 33554432
+      gpu_total_aggregate_pairs_capacity: 16777216
+      gpu_collision_stack_size: 67108864
+      gpu_heap_capacity: 67108864
+      gpu_temp_buffer_capacity: 16777216
+      gpu_max_num_partitions: 8
+      gpu_max_soft_body_contacts: 1048576
+      gpu_max_particle_contacts: 1048576
+    physics_material:
+      func: isaaclab.sim.spawners.materials.physics_materials:spawn_rigid_body_material
+      static_friction: 0.5
+      dynamic_friction: 0.5
+      restitution: 0.0
+      improve_patch_friction: true
+      friction_combine_mode: average
+      restitution_combine_mode: average
+      compliant_contact_stiffness: 0.0
+      compliant_contact_damping: 0.0
+    render:
+      enable_translucency: false
+      enable_reflections: false
+      enable_global_illumination: false
+      antialiasing_mode: DLSS
+      enable_dlssg: false
+      enable_dl_denoiser: false
+      dlss_mode: 0
+      enable_direct_lighting: true
+      samples_per_pixel: 1
+      enable_shadows: true
+      enable_ambient_occlusion: false
+  ui_window_class_type: isaaclab.envs.ui.base_env_window:BaseEnvWindow
+  seed: null
+  decimation: 4
+  is_finite_horizon: false
+  episode_length_s: 1.0
+  scene:
+    num_envs: 4096
+    env_spacing: 10.0
+    lazy_sensor_update: true
+    replicate_physics: true
+    filter_collisions: true
+  events: null
+  observation_space: '{"type": "python", "space": "Box", "value": 150}'
+  num_observations: null
+  state_space: '{"type": "python", "space": "Box", "value": 0}'
+  num_states: null
+  observation_noise_model: null
+  action_space: '{"type": "python", "space": "Box", "value": 6}'
+  num_actions: null
+  action_noise_model: null
+  rerender_on_reset: false
+  wait_for_textures: true
+  robot_name: so101
+  robot:
+    class_type: isaaclab.assets.articulation.articulation:Articulation
+    prim_path: /World/envs/env_.*/Robot
+    spawn:
+      func: isaaclab.sim.spawners.from_files.from_files:spawn_from_usd
+      visible: true
+      semantic_tags: null
+      copy_from_source: true
+      mass_props: null
+      deformable_props: null
+      rigid_props:
+        rigid_body_enabled: null
+        kinematic_enabled: null
+        disable_gravity: false
+        linear_damping: null
+        angular_damping: null
+        max_linear_velocity: null
+        max_angular_velocity: null
+        max_depenetration_velocity: 5.0
+        max_contact_impulse: null
+        enable_gyroscopic_forces: null
+        retain_accelerations: null
+        solver_position_iteration_count: null
+        solver_velocity_iteration_count: null
+        sleep_threshold: null
+        stabilization_threshold: null
+      collision_props: null
+      activate_contact_sensors: false
+      scale: null
+      articulation_props:
+        articulation_enabled: null
+        enabled_self_collisions: false
+        solver_position_iteration_count: 32
+        solver_velocity_iteration_count: 1
+        sleep_threshold: null
+        stabilization_threshold: null
+        fix_root_link: true
+      fixed_tendons_props: null
+      joint_drive_props: null
+      visual_material_path: material
+      visual_material: null
+      usd_path: /home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/sim2real_assets/sim2real_assets/robots/../usds/so101/SO-ARM101-USD.usd
+      variants: null
+    init_state:
+      pos:
+      - -0.05
+      - 0.0
+      - 0
+      rot:
+      - 0.7071067811865475
+      - 0.0
+      - 0.0
+      - 0.7071067811865475
+      lin_vel:
+      - 0.0
+      - 0.0
+      - 0.0
+      ang_vel:
+      - 0.0
+      - 0.0
+      - 0.0
+      joint_pos:
+        Rotation: -0.2736
+        Pitch: -0.6109
+        Elbow: -0.0745
+        Wrist_Pitch: 1.5148
+        Wrist_Roll: -1.6034
+        Jaw: -0.1465
+      joint_vel:
+        .*: 0.0
+    collision_group: 0
+    debug_vis: false
+    soft_joint_pos_limit_factor: 1.0
+    actuators:
+      rotation:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Rotation
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 55
+        damping: 0.7
+        armature: null
+        friction: null
+      pitch:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Pitch
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 30
+        damping: 0.8
+        armature: null
+        friction: null
+      elbow:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Elbow
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 25
+        damping: 0.7
+        armature: null
+        friction: null
+      wrist_pitch:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Wrist_Pitch
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 12
+        damping: 0.5
+        armature: null
+        friction: null
+      wrist_roll:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Wrist_Roll
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 7
+        damping: 0.5
+        armature: null
+        friction: null
+      gripper:
+        class_type: isaaclab.actuators.actuator_pd:ImplicitActuator
+        joint_names_expr:
+        - Jaw
+        effort_limit: null
+        velocity_limit: null
+        effort_limit_sim: 30
+        velocity_limit_sim: null
+        stiffness: 4
+        damping: 0.3
+        armature: null
+        friction: null
+  if_torque_input: false
+  mode: train
+  task_name: so_101
+  num_amp_observations: 5
+  amp_observation_space: 30
+  early_termination: false
+  reference_body: base
+  reset_strategy: random
+  motion_dir: /home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/sim2real/sim2real/tasks/so_101/motions
+  motion_path: /home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/sim2real/sim2real/tasks/so_101/motions/motion_amass/so101_motions
+  train_motion_file: /home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/sim2real/sim2real/tasks/so_101/motions/motion_amass/so101_motions/so101_train.npz
+  test_motion_file: /home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/sim2real/sim2real/tasks/so_101/motions/motion_amass/so101_motions/so101_test.npz
+agent:
+  seed: 42
+  device: cpu
+  num_steps_per_env: 32
+  max_iterations: 400
+  empirical_normalization: true
+  policy:
+    class_name: ActorCritic
+    init_noise_std: 1.0
+    actor_hidden_dims:
+    - 1000
+    - 200
+    critic_hidden_dims:
+    - 1000
+    - 200
+    activation: elu
+  algorithm:
+    class_name: PPO
+    value_loss_coef: 1.0
+    use_clipped_value_loss: true
+    clip_param: 0.2
+    entropy_coef: 0.0
+    num_learning_epochs: 5
+    num_mini_batches: 4
+    learning_rate: 0.0001
+    schedule: adaptive
+    gamma: 0.99
+    lam: 0.95
+    desired_kl: 0.008
+    max_grad_norm: 1.0
+  save_interval: 50
+  experiment_name: humanoid_amass_delta_action
+  run_name: ''
+  logger: wandb
+  neptune_project: isaaclab
+  wandb_project: motor-amass-delta-action
+  resume: false
+  load_run: .*
+  load_checkpoint: model_.*.pt
+  class_name: BaseRunner

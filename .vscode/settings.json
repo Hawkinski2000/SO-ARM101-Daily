@@ -1,0 +1,9 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python.defaultInterpreterPath": "/home/kieran/miniconda3/envs/gapo/bin/python",
+    "python.analysis.extraPaths": [
+    "/home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source/isaaclab",
+    "/home/kieran/Desktop/SO-ARM101-Daily/SO-ARM101-Daily/gaponet/source",
+    ]
+}
