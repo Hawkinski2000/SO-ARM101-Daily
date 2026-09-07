@@ -49,16 +49,17 @@ class MotionLoaderMotor:
         self.dof_target_pos_list = data["real_dof_positions_cmd"][self.motion_index:]
         self.dof_torque_list = data["real_dof_torques"][self.motion_index:]
         
-        # Total number of motions
         self.motion_num = len(self.dof_positions_list)
-        # Maximum time length of motions
-        max_len_timestep = max(len(x) for x in self.dof_positions_list)
-        
-        # List of lengths for each motion
-        self.motion_len = []
-        for i in range(self.motion_num):
-            self.motion_len.append(self.dof_positions_list[i].shape[0])
-        self.motion_len = torch.tensor(self.motion_len, dtype=torch.long, device=self.device)
+
+        if "motion_lengths" in data:
+            all_lengths = data["motion_lengths"]
+            motion_len_list = all_lengths[self.motion_index:].tolist()
+            max_len_timestep = max(motion_len_list)
+        else:
+            motion_len_list = [self.dof_positions_list[i].shape[0] for i in range(self.motion_num)]
+            max_len_timestep = max(len(x) for x in self.dof_positions_list)
+
+        self.motion_len = torch.tensor(motion_len_list, dtype=torch.long, device=self.device)
             
         # Expand all motions to the same length and form a large tensor
         self.dof_positions = torch.zeros((self.motion_num, max_len_timestep, self.num_dofs), dtype=torch.float32, device=self.device)
@@ -126,10 +127,15 @@ class MotionLoaderMotor:
             - Random motion indices, between 0 and the total number of motions.
             - Random time indices, between 0 and the total number of frames per motion.
         """
+        # if self.mode == "train":
+        #     motion_indices = torch.randint(low=0, high=self.motion_num, size=(num_samples,), device=self.device, dtype=torch.long)
+        #     # time_indices = torch.randint(low=0, high=int(self.motion_len / 2), size=(num_samples,), device=self.device, dtype=torch.long)
+        #     time_indices = torch.zeros((num_samples,), device=self.device, dtype=torch.long)
+        # in sample_indices(), train branch:
         if self.mode == "train":
             motion_indices = torch.randint(low=0, high=self.motion_num, size=(num_samples,), device=self.device, dtype=torch.long)
-            # time_indices = torch.randint(low=0, high=int(self.motion_len / 2), size=(num_samples,), device=self.device, dtype=torch.long)
-            time_indices = torch.zeros((num_samples,), device=self.device, dtype=torch.long)
+            max_start = self.motion_len[motion_indices].float()          # each sample's own motion's true length
+            time_indices = (torch.rand(num_samples, device=self.device) * max_start).long()
         if self.mode == "play":
             # motion_indices = torch.randint(low=0, high=self.motion_num, size=(num_samples,), device=self.device, dtype=torch.long)
             motion_indices = torch.arange(end=num_samples, device=self.device, dtype=torch.long) + self.sample_time

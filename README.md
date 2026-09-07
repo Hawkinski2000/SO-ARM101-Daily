@@ -316,3 +316,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   - I was able to perform 50 training iterations on the CPU with `--num_envs=256`, and the model appeared to be converging.
 - What I learned: Adapting the code to work with the SO-101 took some time and a lot of AI assistance, but it wasn't as bad as expected. However, I had to run the training on the CPU because of an issue with the default version of Isaac Sim not being compatible with my GPU (5070 TI).
 - What's next: I will see if I can upgrade to a newer version of Isaac Sim so I can run the training on the GPU.
+
+### 2026-09-06
+
+- What I did: I collected recordings for all 50 of the so101 motions in the SAGE repo to use as train/test data with GapONet.
+- What I learned: I decided to just skip trying to upgrade Isaac Sim because apparently it will be quite a significant refactor since there are breaking API changes. I'll just try training the GapONet model on the CPU for now and see if that's feasible.
+- What's next: Now that I've collected data for the 50 motions, I will attempt a serious GapONet training run tomorrow.

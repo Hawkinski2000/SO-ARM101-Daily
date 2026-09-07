@@ -1,13 +1,16 @@
 """
 Convert SAGE real-robot CSV output into GapONet's expected .npz motion format.
 
+Supports multiple motions of different lengths. Every motion is zero-padded to
+the length of the longest one; true (un-padded) lengths are stored in
+`motion_lengths` so motion_motor_loader.py can still end episodes at the right
+point. This avoids dtype=object entirely (no pickling), sidestepping the
+numpy-version-sensitive pickle issue we hit earlier.
+
 Usage:
     python csv_to_gaponet_npz.py \
-        --real-dir sage/output/real/so101/custom/pick_place \
+        --real-dirs sage/output/real/so101/custom/pick_place sage/output/real/so101/custom/custom_motion \
         --out so101_train.npz
-
-Produces one npz containing a SINGLE motion clip (index 0), matching the
-motion_index=0 patch applied to motion_motor_loader.py.
 """
 import argparse
 import ast
@@ -16,7 +19,6 @@ import numpy as np
 
 
 def load_control(path):
-    """control.csv: type,timestamp,positions -> (T, 6) array of commanded positions"""
     positions = []
     with open(path, newline="") as f:
         reader = csv.DictReader(f)
@@ -28,8 +30,6 @@ def load_control(path):
 
 
 def load_state_motor(path):
-    """state_motor.csv: type,timestamp,positions,velocities,torques
-    -> three (T, 6) arrays: positions, velocities, torques"""
     positions, velocities, torques = [], [], []
     with open(path, newline="") as f:
         reader = csv.DictReader(f)
@@ -51,41 +51,63 @@ def load_joint_list(path):
         return [line.strip() for line in f if line.strip()]
 
 
+def load_one_motion(real_dir):
+    """Returns (cmd_pos, real_pos, real_vel, real_torque, joint_sequence) for one motion dir."""
+    cmd_pos = load_control(f"{real_dir}/control.csv")
+    real_pos, real_vel, real_torque = load_state_motor(f"{real_dir}/state_motor.csv")
+    joint_sequence = load_joint_list(f"{real_dir}/joint_list.txt")
+
+    n = min(len(cmd_pos), len(real_pos))
+    if len(cmd_pos) != len(real_pos):
+        print(f"  WARNING [{real_dir}]: row count mismatch (control={len(cmd_pos)}, "
+              f"state_motor={len(real_pos)}). Truncating both to {n}.")
+    return cmd_pos[:n], real_pos[:n], real_vel[:n], real_torque[:n], joint_sequence
+
+
+def pad_to(arr, target_len):
+    """Zero-pad a (T, D) array up to (target_len, D)."""
+    if arr.shape[0] == target_len:
+        return arr
+    pad_width = target_len - arr.shape[0]
+    return np.pad(arr, ((0, pad_width), (0, 0)), mode="constant")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--real-dir", required=True, help="dir containing control.csv, state_motor.csv, joint_list.txt")
+    ap.add_argument("--real-dirs", nargs="+", required=True,
+                     help="one or more dirs, each containing control.csv, state_motor.csv, joint_list.txt")
     ap.add_argument("--out", required=True, help="output .npz path")
     args = ap.parse_args()
 
-    control_path = f"{args.real_dir}/control.csv"
-    state_path = f"{args.real_dir}/state_motor.csv"
-    joints_path = f"{args.real_dir}/joint_list.txt"
+    motions = []
+    joint_sequence = None
+    for real_dir in args.real_dirs:
+        print(f"Loading {real_dir} ...")
+        cmd_pos, real_pos, real_vel, real_torque, js = load_one_motion(real_dir)
+        print(f"  {len(real_pos)} timesteps")
+        if joint_sequence is None:
+            joint_sequence = js
+        elif joint_sequence != js:
+            raise ValueError(f"Joint order mismatch in {real_dir}: {js} != {joint_sequence}")
+        motions.append((cmd_pos, real_pos, real_vel, real_torque))
 
-    cmd_pos = load_control(control_path)
-    real_pos, real_vel, real_torque = load_state_motor(state_path)
-    joint_sequence = load_joint_list(joints_path)
+    motion_lengths = np.array([m[1].shape[0] for m in motions], dtype=np.int64)
+    max_len = int(motion_lengths.max())
+    num_dofs = len(joint_sequence)
+    num_motions = len(motions)
+    print(f"\n{num_motions} motion(s), lengths {motion_lengths.tolist()}, padding all to {max_len}")
 
-    print(f"control.csv rows:     {cmd_pos.shape}")
-    print(f"state_motor.csv rows: {real_pos.shape}")
+    real_dof_positions = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
+    real_dof_velocities = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
+    real_dof_positions_cmd = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
+    real_dof_torques = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
 
-    # Sanity check: these must line up 1:1 since both are on the same real-robot clock
-    n = min(len(cmd_pos), len(real_pos))
-    if len(cmd_pos) != len(real_pos):
-        print(f"WARNING: row count mismatch (control={len(cmd_pos)}, state_motor={len(real_pos)}). "
-              f"Truncating both to {n} rows. Investigate before trusting this data.")
-    cmd_pos = cmd_pos[:n]
-    real_pos = real_pos[:n]
-    real_vel = real_vel[:n]
-    real_torque = real_torque[:n]
-
-    # GapONet expects an array of motion clips. AMASS's original data uses dtype=object
-    # because motions have varying lengths (ragged arrays). We only have ONE fixed-length
-    # motion, so we use a plain rectangular array with a leading dim of 1 instead —
-    # this avoids Python pickling entirely (no numpy-version-sensitive object arrays).
-    real_dof_positions = np.stack([real_pos])          # shape (1, T, 6), plain float32
-    real_dof_velocities = np.stack([real_vel])
-    real_dof_positions_cmd = np.stack([cmd_pos])
-    real_dof_torques = np.stack([real_torque])
+    for i, (cmd_pos, real_pos, real_vel, real_torque) in enumerate(motions):
+        t = motion_lengths[i]
+        real_dof_positions[i, :t] = real_pos
+        real_dof_velocities[i, :t] = real_vel
+        real_dof_positions_cmd[i, :t] = cmd_pos
+        real_dof_torques[i, :t] = real_torque
 
     np.savez(
         args.out,
@@ -93,9 +115,10 @@ def main():
         real_dof_velocities=real_dof_velocities,
         real_dof_positions_cmd=real_dof_positions_cmd,
         real_dof_torques=real_dof_torques,
+        motion_lengths=motion_lengths,
         joint_sequence=np.array(joint_sequence),
     )
-    print(f"Wrote {args.out} — 1 motion clip, {n} timesteps, {len(joint_sequence)} joints: {joint_sequence}")
+    print(f"\nWrote {args.out} — {num_motions} motion(s), joints: {joint_sequence}")
 
 
 if __name__ == "__main__":
