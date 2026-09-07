@@ -43,6 +43,7 @@ class SO101EnvCfg(DirectRLEnvCfg):
     num_amp_observations = 5
     amp_observation_space = 5 * 6
 
+    min_runs = 1
     early_termination = False       # arm is bolted down, can't "fall"
     reference_body = "base"         # per the FrameTransformerCfg evidence
 

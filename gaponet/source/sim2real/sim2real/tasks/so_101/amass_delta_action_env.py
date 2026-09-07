@@ -454,8 +454,9 @@ class SO101Env(DirectRLEnv):
         append_section_csv("Upper Body Joint Area (rad·s) by Motion", upper_body_area_bins)
         
         # Per-joint metrics output (only Upper Body Joint Area)
-        print_per_joint_table("Per-Joint Upper Body Area (rad·s) by Motion", per_joint_upper_body_area_bins)
-        append_per_joint_csv("Per-Joint Upper Body Area (rad·s) by Motion", per_joint_upper_body_area_bins)
+        joint_names = list(self._motion_loader.joint_sequence)
+        print_per_joint_table("Per-Joint Upper Body Area (rad·s) by Motion", per_joint_upper_body_area_bins, joint_names=joint_names)
+        append_per_joint_csv("Per-Joint Upper Body Area (rad·s) by Motion", per_joint_upper_body_area_bins, joint_names=joint_names)
         print("######################################################################")
 
         # write combined CSV once

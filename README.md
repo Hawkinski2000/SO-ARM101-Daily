@@ -322,3 +322,23 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I collected recordings for all 50 of the so101 motions in the SAGE repo to use as train/test data with GapONet.
 - What I learned: I decided to just skip trying to upgrade Isaac Sim because apparently it will be quite a significant refactor since there are breaking API changes. I'll just try training the GapONet model on the CPU for now and see if that's feasible.
 - What's next: Now that I've collected data for the 50 motions, I will attempt a serious GapONet training run tomorrow.
+
+### 2026-09-07
+
+- What I did:
+  - I trained the GapONet MLP model for 2,000 steps on a train split of data from 40 (80%) of the SAGE motions I recorded yesterday.
+  - I ran `play.py` on the test split of data from the remaining 10 (20%) of the SAGE motions. I first tested the untrained `model_0.pt` checkpoint to get a baseline to compare to. It got the following error values for each of the 6 joints (lower is better):
+
+    | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+    | --- | --- | --- | --- | --- | --- |
+    | 297.1616 | 248.1729 | 259.5990 | 244.6589 | 389.6175 | 140.4636
+
+    I then tested it again but on the final `model_1999.pt` checkpoint to see if the model actually learned to generalize to new motions during training, and got the following results:
+
+    | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+    | --- | --- | --- | --- | --- | --- |
+    | 246.3926 | 213.1960 | 210.8976 | 125.2883 | 65.9685 | 47.3049
+
+- What I learned: The model definitely learned to generalize to new motions during training judging by the error values for certain joints being significantly lower for the `model_1999.pt` checkpoint compared to the untrained `model_0.pt` checkpoint. In theory, this means it should be able to compensate somewhat for the sim-to-real gap. I'm not sure how meaningful these results are, however, since some of the error differences for certain joints were not as significant even after 2,000 steps of training. 
+
+- What's next: The next step is to test if the trained GapONet model actually meaningfully narrows the sim-to-real gap when used with the actual arm. I can either use the model in the simulation environment when collecting demonstrations so the simulated arm's movement better matches the real arm's movement, or I can use the model on the real arm during inference time so actions are corrected before execution. I'll probably try GapONet on the real arm first since this does not require collecting an entire dataset and fine-tuning GR00T again.

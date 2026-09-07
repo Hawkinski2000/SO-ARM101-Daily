@@ -1,20 +1,21 @@
 """
-Convert SAGE real-robot CSV output into GapONet's expected .npz motion format.
-
-Supports multiple motions of different lengths. Every motion is zero-padded to
-the length of the longest one; true (un-padded) lengths are stored in
-`motion_lengths` so motion_motor_loader.py can still end episodes at the right
-point. This avoids dtype=object entirely (no pickling), sidestepping the
-numpy-version-sensitive pickle issue we hit earlier.
+Convert SAGE real-robot CSV output into GapONet's expected .npz motion format,
+auto-discovering all motions under a root folder and splitting them into
+train/test sets (like sklearn's train_test_split), in one run.
 
 Usage:
     python csv_to_gaponet_npz.py \
-        --real-dirs sage/output/real/so101/custom/pick_place sage/output/real/so101/custom/custom_motion \
-        --out so101_train.npz
+        --motions-root sage/output/real/so101/custom \
+        --train-out gaponet/.../so101_train.npz \
+        --test-out gaponet/.../so101_test.npz \
+        --test-size 0.2 \
+        --seed 1337
 """
 import argparse
 import ast
 import csv
+import os
+import random
 import numpy as np
 
 
@@ -64,27 +65,24 @@ def load_one_motion(real_dir):
     return cmd_pos[:n], real_pos[:n], real_vel[:n], real_torque[:n], joint_sequence
 
 
-def pad_to(arr, target_len):
-    """Zero-pad a (T, D) array up to (target_len, D)."""
-    if arr.shape[0] == target_len:
-        return arr
-    pad_width = target_len - arr.shape[0]
-    return np.pad(arr, ((0, pad_width), (0, 0)), mode="constant")
+def discover_motions(root):
+    """Find every subdirectory of `root` that looks like a valid motion recording."""
+    motion_dirs = []
+    for name in sorted(os.listdir(root)):
+        d = os.path.join(root, name)
+        if os.path.isdir(d) and os.path.exists(os.path.join(d, "state_motor.csv")):
+            motion_dirs.append(d)
+    return motion_dirs
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--real-dirs", nargs="+", required=True,
-                     help="one or more dirs, each containing control.csv, state_motor.csv, joint_list.txt")
-    ap.add_argument("--out", required=True, help="output .npz path")
-    args = ap.parse_args()
-
+def build_npz(motion_dirs, out_path):
+    """Load, pad, and write a set of motion dirs into one npz file."""
     motions = []
     joint_sequence = None
-    for real_dir in args.real_dirs:
-        print(f"Loading {real_dir} ...")
+    for real_dir in motion_dirs:
+        name = os.path.basename(real_dir)
         cmd_pos, real_pos, real_vel, real_torque, js = load_one_motion(real_dir)
-        print(f"  {len(real_pos)} timesteps")
+        print(f"  [{name}] {len(real_pos)} timesteps")
         if joint_sequence is None:
             joint_sequence = js
         elif joint_sequence != js:
@@ -95,7 +93,7 @@ def main():
     max_len = int(motion_lengths.max())
     num_dofs = len(joint_sequence)
     num_motions = len(motions)
-    print(f"\n{num_motions} motion(s), lengths {motion_lengths.tolist()}, padding all to {max_len}")
+    print(f"  -> {num_motions} motion(s), lengths {motion_lengths.tolist()}, padding all to {max_len}")
 
     real_dof_positions = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
     real_dof_velocities = np.zeros((num_motions, max_len, num_dofs), dtype=np.float32)
@@ -109,8 +107,9 @@ def main():
         real_dof_positions_cmd[i, :t] = cmd_pos
         real_dof_torques[i, :t] = real_torque
 
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     np.savez(
-        args.out,
+        out_path,
         real_dof_positions=real_dof_positions,
         real_dof_velocities=real_dof_velocities,
         real_dof_positions_cmd=real_dof_positions_cmd,
@@ -118,7 +117,44 @@ def main():
         motion_lengths=motion_lengths,
         joint_sequence=np.array(joint_sequence),
     )
-    print(f"\nWrote {args.out} — {num_motions} motion(s), joints: {joint_sequence}")
+    print(f"  Wrote {out_path}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--motions-root", required=True,
+                     help="dir whose subdirectories are each one motion (containing control.csv, state_motor.csv, joint_list.txt)")
+    ap.add_argument("--train-out", required=True)
+    ap.add_argument("--test-out", required=True)
+    ap.add_argument("--test-size", type=float, default=0.2, help="fraction held out for test (default 0.2)")
+    ap.add_argument("--seed", type=int, default=1337, help="shuffle seed, for reproducibility")
+    args = ap.parse_args()
+
+    motion_dirs = discover_motions(args.motions_root)
+    if len(motion_dirs) < 2:
+        raise ValueError(f"Found only {len(motion_dirs)} motion(s) under {args.motions_root} — need at least 2 to split.")
+
+    print(f"Discovered {len(motion_dirs)} motions under {args.motions_root}:")
+    for d in motion_dirs:
+        print(f"  - {os.path.basename(d)}")
+
+    rng = random.Random(args.seed)
+    shuffled = motion_dirs.copy()
+    rng.shuffle(shuffled)
+
+    n_test = max(1, round(len(shuffled) * args.test_size))
+    test_dirs = shuffled[:n_test]
+    train_dirs = shuffled[n_test:]
+
+    print(f"\nSplit (seed={args.seed}): {len(train_dirs)} train / {len(test_dirs)} test")
+    print("Train:", [os.path.basename(d) for d in train_dirs])
+    print("Test: ", [os.path.basename(d) for d in test_dirs])
+
+    print(f"\nBuilding train npz ({len(train_dirs)} motions)...")
+    build_npz(train_dirs, args.train_out)
+
+    print(f"\nBuilding test npz ({len(test_dirs)} motions)...")
+    build_npz(test_dirs, args.test_out)
 
 
 if __name__ == "__main__":
