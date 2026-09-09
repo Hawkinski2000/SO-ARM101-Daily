@@ -342,3 +342,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I learned: The model definitely learned to generalize to new motions during training judging by the error values for certain joints being significantly lower for the `model_1999.pt` checkpoint compared to the untrained `model_0.pt` checkpoint. In theory, this means it should be able to compensate somewhat for the sim-to-real gap. I'm not sure how meaningful these results are, however, since some of the error differences for certain joints were not as significant even after 2,000 steps of training. 
 
 - What's next: The next step is to test if the trained GapONet model actually meaningfully narrows the sim-to-real gap when used with the actual arm. I can either use the model in the simulation environment when collecting demonstrations so the simulated arm's movement better matches the real arm's movement, or I can use the model on the real arm during inference time so actions are corrected before execution. I'll probably try GapONet on the real arm first since this does not require collecting an entire dataset and fine-tuning GR00T again.
+
+### 2026-09-08
+
+- What I did: I tried a script that corrects actions in `so101_eval.py` using the exported GapONet `policy.pt` model.
+- What I learned: The arm flails wildly when its actions are corrected by the GapONet model. I'm not sure if this is an issue with the script or the model itself. Interestingly, when viewing the joint positions in rerun (with the real arm disabled of course), all 6 joints seem to oscillate together rapidly in a synchronized manner, which is very bizarre. This could be a bug in the script, or the model may have "learned" a strange shortcut for minimizing the error.
+- What's next: I'll need to debug this issue tomorrow. I think I might try different checkpoints to see if the behavior differs, which would indicate that this may be a model/training issue.
