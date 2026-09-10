@@ -348,3 +348,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tried a script that corrects actions in `so101_eval.py` using the exported GapONet `policy.pt` model.
 - What I learned: The arm flails wildly when its actions are corrected by the GapONet model. I'm not sure if this is an issue with the script or the model itself. Interestingly, when viewing the joint positions in rerun (with the real arm disabled of course), all 6 joints seem to oscillate together rapidly in a synchronized manner, which is very bizarre. This could be a bug in the script, or the model may have "learned" a strange shortcut for minimizing the error.
 - What's next: I'll need to debug this issue tomorrow. I think I might try different checkpoints to see if the behavior differs, which would indicate that this may be a model/training issue.
+
+### 2026-09-09
+
+- What I did: I made some interesting findings today involving the weird synchronized oscillating behavior. First, if the workspace light is turned off, the oscillating sawtooth patterns on the joint positions in rerun disappear almost immediately, and the joint positions become very calm and flat. Shortly after turning the light on they become choppy again. Second, and perhaps more importantly, I had not noticed that this sawtooth pattern actually appears on the joint positions even with the GapONet correction disabled, however it's more subtle. This means it's a fundamental issue with GR00T itself, and GapONet may just be amplifying this for some reason. This is likely related to the choppy movement I noticed in the arm starting back on 08-22. 
+- What I learned: GapONet may not be the issue at all. I will need to investigate the GR00T model further.
+- What's next: I may try different GR00T checkpoints tomorrow to try to narrow down what, if anything, seems to be correlated with the choppy movement, assuming for now this is a GR00T/model issue.
