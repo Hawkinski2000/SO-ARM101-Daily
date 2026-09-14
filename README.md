@@ -372,3 +372,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I just experimented with different `query_stride` and `ensemble_decay` values in the modified temporal ensembling `so101_eval.py`.
 - What I learned: It seems like none of the values result in particularly impressive behavior, despite the improvement I noticed yesterday. I'm now thinking the fine-tuned GR00T model itself might be the next place to look.
 - What's next: I'm thinking of collecting some real demonstrations in my actual workspace and fine-tuning GR00T on those, instead of just using the co-trained checkpoint provided with the course. Maybe actually fine-tuning on my workspace specifically will improve the performance.
+
+### 2026-09-13
+
+- What I did: I followed the [(Optional) Collecting Real Demonstrations With LeRobot](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/13-strategy2-cotraining.html#optional-collecting-real-demonstrations-with-lerobot) instructions in the [Sim-to-Real Strategy 2: Co-Training With Real Data](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/13-strategy2-cotraining.html#sim-to-real-strategy-2-co-training-with-real-data) section today to record some real demonstrations in my actual workspace.
+- What I learned: I was able to record 4 demonstrations, however I was getting some strange issues with saving the dataset. I'll have to investigate this further tomorrow.
+- What's next: I'll try to figure out why I'm having issues saving the recordings tomorrow.
