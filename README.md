@@ -378,3 +378,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I followed the [(Optional) Collecting Real Demonstrations With LeRobot](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/13-strategy2-cotraining.html#optional-collecting-real-demonstrations-with-lerobot) instructions in the [Sim-to-Real Strategy 2: Co-Training With Real Data](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/13-strategy2-cotraining.html#sim-to-real-strategy-2-co-training-with-real-data) section today to record some real demonstrations in my actual workspace.
 - What I learned: I was able to record 4 demonstrations, however I was getting some strange issues with saving the dataset. I'll have to investigate this further tomorrow.
 - What's next: I'll try to figure out why I'm having issues saving the recordings tomorrow.
+
+### 2026-09-14
+
+- What I did: I recorded 15 episodes of real demonstrations today.
+- What I learned: I technically had no issues with saving the episodes and I can see that 15 were saved to the dataset folder, however I did notice a warning that I saw yesterday. I think yesterday I assumed this meant the saving failed, but the episodes may have been saved after all. I believe it's an error that's caused by ending the batch of recordings when the gripper is closed. For some reason the gripper servo throws an "overload error", and I can see its LED has turned red. The fix seems to be as simple as ending each recording with the gripper slightly open.
+- What's next: I think I might try to fine-tune on 20-30 real demonstrations, so I may record another 5-15 tomorrow.
