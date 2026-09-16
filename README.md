@@ -384,3 +384,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I recorded 15 episodes of real demonstrations today.
 - What I learned: I technically had no issues with saving the episodes and I can see that 15 were saved to the dataset folder, however I did notice a warning that I saw yesterday. I think yesterday I assumed this meant the saving failed, but the episodes may have been saved after all. I believe it's an error that's caused by ending the batch of recordings when the gripper is closed. For some reason the gripper servo throws an "overload error", and I can see its LED has turned red. The fix seems to be as simple as ending each recording with the gripper slightly open.
 - What's next: I think I might try to fine-tune on 20-30 real demonstrations, so I may record another 5-15 tomorrow.
+
+### 2026-09-15
+
+- What I did: I recorded another 15 real demonstrations today.
+- What I learned: Not much today, although I did notice another issue with saving the datasets. I get an "invalid username or password" error. I think this is related to uploading the dataset to Hugging Face.
+- What's next: I'll try to at least get the Brev instance set up tomorrow for fine-tuning GR00T on a mixture of real and sim demonstrations, and possibly start the training.
