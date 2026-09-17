@@ -390,3 +390,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I recorded another 15 real demonstrations today.
 - What I learned: Not much today, although I did notice another issue with saving the datasets. I get an "invalid username or password" error. I think this is related to uploading the dataset to Hugging Face.
 - What's next: I'll try to at least get the Brev instance set up tomorrow for fine-tuning GR00T on a mixture of real and sim demonstrations, and possibly start the training.
+
+### 2026-09-16
+
+- What I did: I noticed that unfortunately, for whatever reason, the 15 episodes I recorded last night did not save. I have no idea why. Today I recorded another 15 real demonstrations.
+- What I learned: Not much today since I'm basically just repeating what I did yesterday.
+- What's next: Now that I actually do have the full 30 real demonstrations I was aiming for, I'll try to get the Brev instance set up tomorrow for fine-tuning GR00T.
