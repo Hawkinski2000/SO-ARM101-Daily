@@ -400,5 +400,12 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 ### 2026-09-17
 
 - What I did: I tried merging my first dataset of 15 real demonstrations with the one from last night with a script that makes use of `merge_datasets` from lerobot. 
-- What I learned: Unfortunately I somehow managed to overrite the dataset from last night that I saved locally with the older one that was already uploaded to Hugging Face. It seems I've had some bad luck with completing these final 15 demonstrations recently.
+- What I learned: Unfortunately I somehow managed to overwrite the dataset from last night that I saved locally with the older one that was already uploaded to Hugging Face. It seems I've had some bad luck with completing these final 15 demonstrations recently.
 - What's next: I'll probably record another 15 episodes tomorrow, and of course this time I will be very careful about saving backups.
+
+
+### 2026-09-18
+
+- What I did: I collected yet another 15 recordings today. I was more careful about saving them this time.
+- What I learned: Not much today since I've become very familiar with the recording process.
+- What's next: I'll merge the previous and new datasets and try to begin fine-tuning GR00T on them tomorrow.  
