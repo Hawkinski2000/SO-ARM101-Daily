@@ -408,4 +408,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I collected yet another 15 recordings today. I was more careful about saving them this time.
 - What I learned: Not much today since I've become very familiar with the recording process.
-- What's next: I'll merge the previous and new datasets and try to begin fine-tuning GR00T on them tomorrow.  
+- What's next: I'll merge the previous and new datasets and try to begin fine-tuning GR00T on them tomorrow.
+
+### 2026-09-19
+
+- What I did: I unfortunately had yet another, and hopefully the final, dataset issue. Apparently the `wrist` and `front` camera ports were swapped during the recordings. I looked into trying to just manually swap the names in the folders and `.parquet` files, but this seemed very risky and likely to introduce a critical bug. I decided to just record another 25 demonstrations with the correct camera ports set. I chose 25 instead of 30 this time because both are fairly arbitrary, however I like that 25 is a nice 1:4 ratio of real to sim demonstrations that can be merged with my 100 sim recordings. This will just be a place to start in case later I want to do other fine-tuning experiments with a different ratio.
+- What I learned: Once again, not much today since I've become very familiar with the recording process. One benefit of recording a fresh dataset I noticed, however, is I don't have to worry about merging this with the other half that I recorded a few days ago. I've already uploaded the 25 recordings to the Hugging Face dataset repo, so I should be ready to start fine-tuning tomorrow (hopefully).
+- What's next: Hopefully I can begin fine-tuning GR00T tomorrow.
