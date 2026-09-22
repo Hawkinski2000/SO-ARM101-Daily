@@ -421,3 +421,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I merged the 25 real examples with my previous dataset of 100 sim examples. I followed the [Hands-On: Run GR00T Post-Training Yourself](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/10-groot.html#hands-on-run-gr00t-post-training-yourself) section again to test fine-tuning GR00T on this merged "sim and real" dataset.
 - What I learned: I just tested the fine-tuning for about 200 steps. The loss is noticably decreasing, so everything seems to be ready for a full fine-tuning run.
 - What's next: I'll perform a full fine-tuning run of GR00T on this merged dataset tomorrow.
+
+### 2026-09-21
+
+- What I did: I fine-tuned GR00T for 20,000 steps on the merged dataset. I uploaded the [model](https://huggingface.co/Hawkinski/grootn16-finetune_Hawkinski_so101-vials-to-rack-sim-and-real) to Hugging Face.
+- What I learned: Not much, it was mostly just watching the training and making sure nothing went wrong.
+- What's next: I'll test the new model on the arm tomorrow and see how including real examples of my actual workspace and a higher real to sim ratio impacts its performance.
