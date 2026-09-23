@@ -427,3 +427,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I fine-tuned GR00T for 20,000 steps on the merged dataset. I uploaded the [model](https://huggingface.co/Hawkinski/grootn16-finetune_Hawkinski_so101-vials-to-rack-sim-and-real) to Hugging Face.
 - What I learned: Not much, it was mostly just watching the training and making sure nothing went wrong.
 - What's next: I'll test the new model on the arm tomorrow and see how including real examples of my actual workspace and a higher real to sim ratio impacts its performance.
+
+### 2026-09-22
+
+- What I did: I tested the new fine-tuned GR00T model on the arm today.
+- What I learned: The arm definitely performed better with the new model. I think the 25 real examples of my actual workspace helped. I also noticed the performance improves significantly when increasing the `action_horizon`.
+- What's next: I'll experiment more with different values for the `action_horizon` and other parameters for the temporal ensembling code. I might also try some other checkpoints like step 15,000 or 10,000 since I only tested the 20,000 model.
