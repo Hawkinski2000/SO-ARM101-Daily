@@ -433,3 +433,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tested the new fine-tuned GR00T model on the arm today.
 - What I learned: The arm definitely performed better with the new model. I think the 25 real examples of my actual workspace helped. I also noticed the performance improves significantly when increasing the `action_horizon`.
 - What's next: I'll experiment more with different values for the `action_horizon` and other parameters for the temporal ensembling code. I might also try some other checkpoints like step 15,000 or 10,000 since I only tested the 20,000 model.
+
+### 2026-09-23
+
+- What I did: I tested the `checkpoint-10000` checkpoint today.
+- What I learned: The performance is noticably worse with the `checkpoint-10000` model compared to `checkpoint-20000`. I'm wondering now if training beyond even 20,000 steps might actually result in some additional performance gains.
+- What's next: I might consider training for longer from `checkpoint-20000`, perhaps for 25,000 steps, to see if the loss continues to decrease meaninfully and if this results in noticable improvements in vial-to-rack performance.
