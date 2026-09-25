@@ -438,4 +438,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I tested the `checkpoint-10000` checkpoint today.
 - What I learned: The performance is noticably worse with the `checkpoint-10000` model compared to `checkpoint-20000`. I'm wondering now if training beyond even 20,000 steps might actually result in some additional performance gains.
-- What's next: I might consider training for longer from `checkpoint-20000`, perhaps for 25,000 steps, to see if the loss continues to decrease meaninfully and if this results in noticable improvements in vial-to-rack performance.
+- What's next: I might consider training for longer from `checkpoint-20000`, perhaps for 25,000 steps, to see if the loss continues to decrease meaningfully and if this results in noticable improvements in vial-to-rack performance.
+
+### 2026-09-24
+
+- What I did: I spent at least half an hour today trying but failing to connect to the Brev instance again so I can test if I can resume from `checkpoint-20000` to continue fine-tuning, probably until step 25,000.
+- What I learned: I'm not sure why it hangs on "waiting for instance to be ready...". It seems both Brev and Nebius, the actual GPU provider for this instance, apparently aren't experiencing any issues or outages, at least judging by a quick search.
+- What's next: Hopefully this was just some temporary issue that will be resolved by tomorrow and in that case I might just start the fine-tuning.
