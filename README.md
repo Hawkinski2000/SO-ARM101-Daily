@@ -445,3 +445,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I spent at least half an hour today trying but failing to connect to the Brev instance again so I can test if I can resume from `checkpoint-20000` to continue fine-tuning, probably until step 25,000.
 - What I learned: I'm not sure why it hangs on "waiting for instance to be ready...". It seems both Brev and Nebius, the actual GPU provider for this instance, apparently aren't experiencing any issues or outages, at least judging by a quick search.
 - What's next: Hopefully this was just some temporary issue that will be resolved by tomorrow and in that case I might just start the fine-tuning.
+
+### 2026-09-25
+
+- What I did: I was able to connect to the Brev instance today. I'm not sure what the issue was last night. I fine-tuned the GR00T model from `checkpoint-20000` to `checkpoint-25000` and uploaded the checkpoint to the repo.
+- What I learned: It seemed like the training loss was not really decreasing very much, if at all, by fine-tuning further after step 20,000. Maybe by around steps 15,000-20,000 or so additional training provides little benefit.
+- What's next: I'll test the new `checkpoint-25000` model on the arm tomorrow to see if there's any noticable difference in performance.
