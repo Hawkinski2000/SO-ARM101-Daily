@@ -451,3 +451,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I was able to connect to the Brev instance today. I'm not sure what the issue was last night. I fine-tuned the GR00T model from `checkpoint-20000` to `checkpoint-25000` and uploaded the checkpoint to the repo.
 - What I learned: It seemed like the training loss was not really decreasing very much, if at all, by fine-tuning further after step 20,000. Maybe by around steps 15,000-20,000 or so additional training provides little benefit.
 - What's next: I'll test the new `checkpoint-25000` model on the arm tomorrow to see if there's any noticable difference in performance.
+
+### 2026-09-26
+
+- What I did: I tested the `checkpoint-25000` model on the arm today.
+- What I learned: I was skeptical that training from 20,000 steps to 25,000 would do anything because the loss didn't appear to decrease as much as I'd expected. However, the new `checkpoint-25000` model performed very well. I may just be imagining it, but it seems to perform significantly better than `checkpoint-20000`, from what I remember. I may test `checkpoint-20000` again just to compare and see if there really is a noticable difference.
+- What's next: I may look into GapONet again now that I've improved the GR00T model's performance to something more acceptable. I think it makes more sense now because before the GR00T model was not performing nearly as well, and "correcting" the smaller differences between the sim and real arm may have been the wrong approach, and was probably a bit premature.
