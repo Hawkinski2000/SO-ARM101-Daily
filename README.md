@@ -481,3 +481,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I started a script for loading the dataset of 100 sim recordings and using the joint commands to record new "no GapONet" and "GapONet" datasets to train GR00T on to test if GapOnet is effective.
 - What I learned: One thing I did not consider is that to create 2 identical-looking datasets, one using GapONet and one without, I will need to disable the domain randomization that randomizes the sim environment. One downside of this is the GR00T models likely won't generalize as well, however this isn't a huge concern because the point of fine-tuning GR00T again on these 2 datasets is simply to test if GapONet is working and whether it's meaningfully effective, not to create the best possible models.
 - What's next: I'll try to finish this script tomorrow so it records the 2 new sim datasets using the joint commands from my 100 sim recordings; one where the commands are corrected by my GapONet MLP, and one using only the raw joint commands.
+
+### 2026-10-01
+
+- What I did: I mostly finished and tested the script for loading the dataset of 100 sim recordings and using the joint commands to record new GapONet/no GapONet datasets.
+- What I learned: I was able to watch the arm in Isaac Sim following the joint commands from the first of my 100 recordings. However, the movement seemed really strange. Not sure if this is a bug or if the first episode really was some sort of mistake that made it into the dataset.
+- What's next: I'll try to figure out if the weird arm motion in the sim is a bug tomorrow and hopefully run the script on the entire dataset, and then repeat with GapONet enabled.
