@@ -487,3 +487,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I mostly finished and tested the script for loading the dataset of 100 sim recordings and using the joint commands to record new GapONet/no GapONet datasets.
 - What I learned: I was able to watch the arm in Isaac Sim following the joint commands from the first of my 100 recordings. However, the movement seemed really strange. Not sure if this is a bug or if the first episode really was some sort of mistake that made it into the dataset.
 - What's next: I'll try to figure out if the weird arm motion in the sim is a bug tomorrow and hopefully run the script on the entire dataset, and then repeat with GapONet enabled.
+
+### 2026-10-02
+
+- What I did: I continued with trying to get the script to load my sim recordings.
+- What I learned: I think I identified a bug that caused the strange movement, but now the arm just sits motionless in Isaac Sim which is also very strange. I'm not sure why it's not actually following the joint commands from the recording.
+- What's next: I'll figure out what's preventing the arm from following the joint commands in the sim tomorrow.
