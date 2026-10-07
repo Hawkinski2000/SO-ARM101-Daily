@@ -510,4 +510,10 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 
 - What I did: I added a script to convert the joint commands from my existing 100 sim recordings to the format that SAGE expects for replaying on the real arm.
 - What I learned: It was surprisingly easy to convert my existing sim dataset to the SAGE motion file format. I'll likely be able to replay my sim dataset on the real arm to record the sim-to-real gap and train GapONet again, but this time on motions that make sense for the task I'm trying to do. Maybe I should have considered doing this earlier since it seems like a fairly cheap experiment that could have significant results.
-- What's next: I'll try to start replaying the 100 motion files on the real arm tomorrow. 
+- What's next: I'll try to start replaying the 100 motion files on the real arm tomorrow.
+
+### 2026-10-06
+
+- What I did: I tried replaying the first of my 100 converted motion files on the arm using the SAGE script.
+- What I learned: I was getting an error about the arm's gripper motor that was causing the script to crash. I'm not sure if this is an issue with the conversion script I ran last night, the actual sim data itself, or something else, although I do remember encountering a similar error previously. 
+- What's next: I'll try to fix this motor error tomorrow.
