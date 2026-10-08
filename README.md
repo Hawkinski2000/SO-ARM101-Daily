@@ -517,3 +517,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tried replaying the first of my 100 converted motion files on the arm using the SAGE script.
 - What I learned: I was getting an error about the arm's gripper motor that was causing the script to crash. I'm not sure if this is an issue with the conversion script I ran last night, the actual sim data itself, or something else, although I do remember encountering a similar error previously. 
 - What's next: I'll try to fix this motor error tomorrow.
+
+### 2026-10-07
+
+- What I did: I tried to resolve the overload error coming from the gripper motor today with no luck.
+- What I learned: I compared the joint commands converted from my motion files to the ones from the generic 50 SAGE motions and they seem reasonable. I did notice that a red LED flashes on the arm's gripper motor after the overload error has ocurred. I tried testing a different motion file and the same thing happens, so not sure what's causing this.  
+- What's next: Once again, I will have to try resolving this tomorrow.
