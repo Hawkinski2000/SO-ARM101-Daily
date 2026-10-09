@@ -523,3 +523,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tried to resolve the overload error coming from the gripper motor today with no luck.
 - What I learned: I compared the joint commands converted from my motion files to the ones from the generic 50 SAGE motions and they seem reasonable. I did notice that a red LED flashes on the arm's gripper motor after the overload error has ocurred. I tried testing a different motion file and the same thing happens, so not sure what's causing this.  
 - What's next: Once again, I will have to try resolving this tomorrow.
+
+### 2026-10-08
+
+- What I did: I was able to find the source of the overload error coming from the gripper motor and replay a few of my 100 sim recordings on the real arm.
+- What I learned: The error was coming from the gripper's motor receiving commands to close further than where the jaws actually stop. This may be due to a slight difference between the sim and real arm, so that's more evidence for GapONet's potential usefulness. The solution was to simply clip the gripper's range at about 15% above the minimum. I may experiment with this to find the minimum necessary value.
+- What's next: I'll try to find the minimum clip % for the gripper's range that solves the overload issue, and then I'll start actually replaying all 100 of the sim recordings to train GapONet again.
