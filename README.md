@@ -529,3 +529,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I was able to find the source of the overload error coming from the gripper motor and replay a few of my 100 sim recordings on the real arm.
 - What I learned: The error was coming from the gripper's motor receiving commands to close further than where the jaws actually stop. This may be due to a slight difference between the sim and real arm, so that's more evidence for GapONet's potential usefulness. The solution was to simply clip the gripper's range at about 15% above the minimum. I may experiment with this to find the minimum necessary value.
 - What's next: I'll try to find the minimum clip % for the gripper's range that solves the overload issue, and then I'll start actually replaying all 100 of the sim recordings to train GapONet again.
+
+### 2026-10-09
+
+- What I did: I tested a gripper range clip percentage of 10 today and then replayed some more episodes on the arm. I've completed 25 of the 100 now.
+- What I learned: A clip percentage of 10 on the gripper's range was not sufficient to prevent the motor overload error. 15% will have to do.
+- What's next: I'll finish replaying the remaining 75 episodes on the arm tomorrow.
