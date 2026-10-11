@@ -535,3 +535,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tested a gripper range clip percentage of 10 today and then replayed some more episodes on the arm. I've completed 25 of the 100 now.
 - What I learned: A clip percentage of 10 on the gripper's range was not sufficient to prevent the motor overload error. 15% will have to do.
 - What's next: I'll finish replaying the remaining 75 episodes on the arm tomorrow.
+
+### 2026-10-10
+
+- What I did: I replayed the remaining 75 sim recordings on the arm today.
+- What I learned: There are definitely some noticable differences between the sim and real environments. For example, in the part of each motion where the arm would grip the vial in the sim, it stops slightly before the bottom of the workspace, which can look very strange. I'm hoping the data collected from replaying these motions will be effective training data for GapONet.
+- What's next: I'll try to start training GapONet (again) on this new data tomorrow.
