@@ -541,3 +541,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I replayed the remaining 75 sim recordings on the arm today.
 - What I learned: There are definitely some noticable differences between the sim and real environments. For example, in the part of each motion where the arm would grip the vial in the sim, it stops slightly before the bottom of the workspace, which can look very strange. I'm hoping the data collected from replaying these motions will be effective training data for GapONet.
 - What's next: I'll try to start training GapONet (again) on this new data tomorrow.
+
+### 2026-10-11
+
+- What I did: I converted the 100 new motion files to train and test splits and trained the GapONet MLP for 2,000 iterations.
+- What I learned: I'm paying closer attention to something I noticed the last time I trained the GapONet MLP, which is that the "loss" (value function) curve seems to almost completely flatten out very early in training. This isn't necessarily a reliable indicator that the model isn't learning, but it's slightly less ideal than seeing a curve that's steadily decreasing.
+- What's next: I'll evaluate some of the checkpoints tomorrow on the test split, and then I'll test them on the arm to see if the GapONet MLP trained on actual vial-to-rack motions gives better performance than the previous one just trained on the 50 generic SAGE motions.
