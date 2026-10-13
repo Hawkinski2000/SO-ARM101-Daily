@@ -547,3 +547,23 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I converted the 100 new motion files to train and test splits and trained the GapONet MLP for 2,000 iterations.
 - What I learned: I'm paying closer attention to something I noticed the last time I trained the GapONet MLP, which is that the "loss" (value function) curve seems to almost completely flatten out very early in training. This isn't necessarily a reliable indicator that the model isn't learning, but it's slightly less ideal than seeing a curve that's steadily decreasing.
 - What's next: I'll evaluate some of the checkpoints tomorrow on the test split, and then I'll test them on the arm to see if the GapONet MLP trained on actual vial-to-rack motions gives better performance than the previous one just trained on the 50 generic SAGE motions.
+
+
+### 2026-10-12
+
+- What I did: I tested the new GapOnet MLP on the test split.
+- What I learned: Similar to what I did on 09-07, I first tested the untrained `model_0.pt` checkpoint to get a baseline to compare to. It got the following error values for each of the 6 joints (lower is better):
+
+  | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+  | --- | --- | --- | --- | --- | --- |
+  | 650.4403 | 389.1237 | 624.5501 | 739.1386 | 1712.7890 | 306.8308
+
+  I then tested it again but on the final `model_1999.pt` checkpoint to see if the model actually learned to generalize to new motions during training, and got the following results:
+
+  | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+  | --- | --- | --- | --- | --- | --- |
+  | 37.5411 | 18.7810 | 23.7041 | 10.3167 | 2.9108 | 4.5099
+
+  This is obviously a pretty massive difference in error, suggesting that the MLP model definitely learned during training. I'm wondering why the error values for the untrained model were significantly larger than what I saw with the previous GapONet MLP when I tested it on 09-07. I'm also wondering why the reduction in error for each joint between `model_0.pt` and `model_1999.pt` is so much more drastic than what I saw with the previous MLP. I'm guessing this must be a result of the new training data. Maybe training on a single, consistent type of motion (moving vials to a rack) allowed the model to learn more effectively than when training on the 50 different, unrelated SAGE motions.
+
+- What's next: These numbers look very promising, but I will need to actually test the new checkpoints on the arm to see if these promising results actually translate to anything meaningful.
