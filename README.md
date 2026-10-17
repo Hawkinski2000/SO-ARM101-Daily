@@ -585,3 +585,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I looked into the possibility that the MLP model may not be the issue, and I may want to postpone switching architectures.
 - What I learned: Considering the massive improvement in joint error between the `model_0.pt` and `model_1999.pt` GapONet MLP checkpoints, it seems the MLP is at least learning something, and I want to be absolutely certain that the MLP's predictions are actually the source of the weird motion I've been seeing on the arm. It would be a shame for a model that appears to be performing very well on paper to go to waste.
 - What's next: I'm going to investigate the MLP model's outputs more closely to try to determine what might be causing the weird arm behavior.
+
+### 2026-10-16
+
+- What I did: I'm away from my main computer right now, so today I just learned a bit about the DeepONet architecture since that's the only one of the three GapONet variants that I'm unfamiliar with.
+- What I learned: Admittedly not very much considering DeepONet actually seems pretty complicated. I did learn that DeepONet has actually been used extensively outside of robotics. I figured it was more of some niche, experimental model. I also learned that it contains two "sub-networks", a "trunk network" and a "branch network", whatever those are. 
+- What's next: I found some videos that explain DeepONet, and tomorrow I think I'll probably watch at least enough to understand at a high level why DeepONet may have been chosen as the "default" GapOnet architecture, hence the name.
