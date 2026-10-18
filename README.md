@@ -591,3 +591,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I'm away from my main computer right now, so today I just learned a bit about the DeepONet architecture since that's the only one of the three GapONet variants that I'm unfamiliar with.
 - What I learned: Admittedly not very much considering DeepONet actually seems pretty complicated. I did learn that DeepONet has actually been used extensively outside of robotics. I figured it was more of some niche, experimental model. I also learned that it contains two "sub-networks", a "trunk network" and a "branch network", whatever those are. 
 - What's next: I found some videos that explain DeepONet, and tomorrow I think I'll probably watch at least enough to understand at a high level why DeepONet may have been chosen as the "default" GapOnet architecture, hence the name.
+
+### 2026-10-17
+
+- What I did: I watched a video about Deep Operator Networks (DeepONet) today.
+- What I learned: If I understand correctly, DeepONet approximates an "operator" that maps "functions to functions", unlike a standard neural net that approximates a function which maps inputs to outputs. I'm likely simplifying things with that description. It was also mentioned that a DeepONet model that uses split branch and trunk networks can generalize better to this task than simply using a large MLP. This coincidentally seems very relevant to the issues I've been having with using the MLP variant of GapONet.
+- What's next: I'll likely look into the MLP more closely as I mentioned a few days ago, however I'm becoming increasingly convinced that the DeepONet architecture may be worth trying.
