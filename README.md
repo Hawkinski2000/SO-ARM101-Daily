@@ -597,3 +597,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I watched a video about Deep Operator Networks (DeepONet) today.
 - What I learned: If I understand correctly, DeepONet approximates an "operator" that maps "functions to functions", unlike a standard neural net that approximates a function which maps inputs to outputs. I'm likely simplifying things with that description. It was also mentioned that a DeepONet model that uses split branch and trunk networks can generalize better to this task than simply using a large MLP. This coincidentally seems very relevant to the issues I've been having with using the MLP variant of GapONet.
 - What's next: I'll likely look into the MLP more closely as I mentioned a few days ago, however I'm becoming increasingly convinced that the DeepONet architecture may be worth trying.
+
+### 2026-10-18
+
+- What I did: I looked at the results from testing the most recent GapONet MLP and at the GapONet correction code to try to narrow down the source of the weird jerky motion despite significant improvements in joint error values.
+- What I learned: I'm considering that the improvements in joint error values I saw between the `model_0.pt` and `model_1999.pt` checkpoints may appear significant, but this does not necessarily imply an effective or useful GapONet model in practice. I'm thinking of how I might train the MLP again differently before just discarding it for DeepONet and/or the Transformer architecture.
+- What's next: I'll look for ways the model may have "cheated" during training just to minimize the joint error values, and I'll see if I can potentially resolve some of these and train the MLP again.
