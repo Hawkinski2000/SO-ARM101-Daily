@@ -603,3 +603,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I looked at the results from testing the most recent GapONet MLP and at the GapONet correction code to try to narrow down the source of the weird jerky motion despite significant improvements in joint error values.
 - What I learned: I'm considering that the improvements in joint error values I saw between the `model_0.pt` and `model_1999.pt` checkpoints may appear significant, but this does not necessarily imply an effective or useful GapONet model in practice. I'm thinking of how I might train the MLP again differently before just discarding it for DeepONet and/or the Transformer architecture.
 - What's next: I'll look for ways the model may have "cheated" during training just to minimize the joint error values, and I'll see if I can potentially resolve some of these and train the MLP again.
+
+### 2026-10-19
+
+- What I did: I learned about a possible source of the large improvements in joint error values between the checkpoints despite poor performance on the actual arm.
+- What I learned: While this is part of the original GapONet design, passing the real arm's recorded positions as inputs could be allowing the model to "cheat" during training. Since the timesteps are so short, it can minimize the error significantly just by peeking at the next frame.
+- What's next: I might try modifying the GapONet model to accept the actual target positions as an input rather than real positions and training to see if that has any effect.
