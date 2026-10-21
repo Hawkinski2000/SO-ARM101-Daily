@@ -609,3 +609,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I learned about a possible source of the large improvements in joint error values between the checkpoints despite poor performance on the actual arm.
 - What I learned: While this is part of the original GapONet design, passing the real arm's recorded positions as inputs could be allowing the model to "cheat" during training. Since the timesteps are so short, it can minimize the error significantly just by peeking at the next frame.
 - What's next: I might try modifying the GapONet model to accept the actual target positions as an input rather than real positions and training to see if that has any effect.
+
+### 2026-10-20
+
+- What I did: I modified the GapOnet MLP to accept `dof_target_pos` (target positions) as an input instead of `dof_positions` (real positions) because `dof_positions` may have been allowing the model to "cheat" because it was "giving away the answer" during training, allow it to technically minimize the joint error without actually learning anything useful.
+- What I learned: The change was surprisingly easy, and could potentially improve GapONet's performance. The training script seems to be working the same as before based on a quick test.
+- What's next: I'll do another full training run of the GapONet MLP with this modification tomorrow.
