@@ -615,3 +615,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I modified the GapOnet MLP to accept `dof_target_pos` (target positions) as an input instead of `dof_positions` (real positions) because `dof_positions` may have been allowing the model to "cheat" because it was "giving away the answer" during training, allow it to technically minimize the joint error without actually learning anything useful.
 - What I learned: The change was surprisingly easy, and could potentially improve GapONet's performance. The training script seems to be working the same as before based on a quick test.
 - What's next: I'll do another full training run of the GapONet MLP with this modification tomorrow.
+
+### 2026-10-21
+
+- What I did: I trained the GapONet MLP again, but this time using `dof_target_pos` as an input instead of `dof_positions`.
+- What I learned: The loss curve decreased similarly to the previous model, so the model was definitely learning despite this modification. However, the curve was a bit higher this time, which is the result I was hoping to see. This suggests that the model might be "cheating" less by not getting to peek at the real `dof_positions` and just estimating a plausible solution simply as a means of minimizing the loss.
+- What's next: I'll evaluate this new checkpoint tomorrow and decide where I want to go from there.
