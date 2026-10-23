@@ -621,3 +621,22 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I trained the GapONet MLP again, but this time using `dof_target_pos` as an input instead of `dof_positions`.
 - What I learned: The loss curve decreased similarly to the previous model, so the model was definitely learning despite this modification. However, the curve was a bit higher this time, which is the result I was hoping to see. This suggests that the model might be "cheating" less by not getting to peek at the real `dof_positions` and just estimating a plausible solution simply as a means of minimizing the loss.
 - What's next: I'll evaluate this new checkpoint tomorrow and decide where I want to go from there.
+
+### 2026-10-22
+
+- What I did: I tested the new GapOnet MLP on the test split.
+- What I learned: Once again, I first tested the untrained `model_0.pt` checkpoint to get a baseline to compare to. It got the following error values for each of the 6 joints (lower is better):
+
+  | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+  | --- | --- | --- | --- | --- | --- |
+  | 47.5899 | 51.9442 | 32.7431 | 21.2625 | 21.7419 | 25.5547
+
+  I then tested it again but on the final `model_1999.pt` checkpoint to see if the model actually learned to generalize to new motions during training, and got the following results:
+
+  | Rotation | Pitch | Elbow | Wrist_Pitch | Wrist_Roll | Jaw
+  | --- | --- | --- | --- | --- | --- |
+  | 38.8101 | 26.3446 | 27.8937 | 23.3140 | 50.1871 | 50.3566
+
+  These results are a little disappointing. For some joints the `model_1999.pt` checkpoint even resulted in higher error values than the `model_0.pt` checkpoint, which is very counterintuitive. It suggests that either GapONet initially was "cheating" quite a bit by learning to just peek at adjacent real joint positions to make plausible enough predictions to simply reduce the loss/error without meaningfully learning, or something important was lost by using `dof_target_pos` as an input instead of `dof_positions`.
+
+- What's next: I'm curious if GapONet would perform better if used during sim data collection rather than during deployment to correct the real arm's actions, since this is the "intended" usage mentioned in the course, and I seem to be making little progress in my attempts to make GapONet actually useful during inference time. I may start investigating this to see if GapONet can be salvaged for this project. To be fair, however, I have only tested the MLP architecture despite DeepONet being the intended model, hence the name GapONet. This may be worth investigating as well.
