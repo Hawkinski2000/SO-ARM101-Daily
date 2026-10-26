@@ -652,3 +652,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I recorded another 25 real episodes that will be part of the 100 that I'm going to fine-tune GR00T on.
 - What I learned: Not really much today since I'm quite familiar with the recording process now.
 - What's next: I'll record at least another 25 of the remaining 50 episodes that I need tomorrow.
+
+### 2026-10-25
+
+- What I did: I recorded yet another 25 real episodes that will be part of the 100 that I'm going to fine-tune GR00T on.
+- What I learned: Again, not really much today since I'm already very familiar with the process of recording episodes. I have noticed, however, that now that I have a decent amount of experience with the teleop arm, my standards for what I consider a "good" episode seem to have increased.
+- What's next: I'll record the remaining 25 episodes that I need tomorrow and then I'll be ready to fine-tune GR00T on the Brev instance once again.
