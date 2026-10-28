@@ -664,3 +664,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I recorded the final 25 episodes for the 100 that I'm going to fine-tune GR00T on.
 - What I learned: Once again, not  much today. I am, however, hoping to make some interesting discoveries when testing this new GR00T model.
 - What's next: I'll figure out merging these 75 new real episodes with my previous 25 tomorrow, and I'll see if I can get the dataset onto the Brev instance and test the GR00T training script.
+
+### 2026-10-27
+
+- What I did: I tried merging my previous 25 real episodes with the new dataset of 75.
+- What I learned: I was having some issues running the dataset conversion script on the Brev instance. I think it has something to do with the `lerobot-edit-dataset` merge command.
+- What's next: I'll try to figure out this dataset merging issue tomorrow so I can test the GR00T fine-tuning script on the new dataset.
