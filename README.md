@@ -670,3 +670,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tried merging my previous 25 real episodes with the new dataset of 75.
 - What I learned: I was having some issues running the dataset conversion script on the Brev instance. I think it has something to do with the `lerobot-edit-dataset` merge command.
 - What's next: I'll try to figure out this dataset merging issue tomorrow so I can test the GR00T fine-tuning script on the new dataset.
+
+### 2026-10-28
+
+- What I did: I was able to resolve the dataset merging/conversion issue.
+- What I learned: I believe the issue was that the older version of lerobot I was using would for some reason merge all `.parquet` files into a single one, but only in the dataset's `/metadata` folder, rather than maintaining the original split. Using the newest version of lerobot fixed this. I was able to start the GR00T fine-tuning script and watch it start completing training steps with no errors.
+- What's next: I'll try to start a full GR00T fine-tuning run tomorrow.
