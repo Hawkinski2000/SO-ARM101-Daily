@@ -676,3 +676,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I was able to resolve the dataset merging/conversion issue.
 - What I learned: I believe the issue was that the older version of lerobot I was using would for some reason merge all `.parquet` files into a single one, but only in the dataset's `/metadata` folder, rather than maintaining the original split. Using the newest version of lerobot fixed this. I was able to start the GR00T fine-tuning script and watch it start completing training steps with no errors.
 - What's next: I'll try to start a full GR00T fine-tuning run tomorrow.
+
+### 2026-10-29
+
+- What I did: I started fine-tuning GR00T on the Brev instance again today. I only did a partial training today run due to time constraints.
+- What I learned: I didn't really learn much today since I'm now quite familiar with the process of starting the GR00T fine-tuning script. I do wonder, however, what hyperparameters exist for GR00T, and how they were chosen for this course. Maybe this would be worth looking into in more detail in the future.
+- What's next: I'll finish the full GR00T fine-tuning run tomorrow when I have more time.
