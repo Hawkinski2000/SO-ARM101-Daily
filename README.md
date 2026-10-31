@@ -682,3 +682,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I started fine-tuning GR00T on the Brev instance again today. I only did a partial training today run due to time constraints.
 - What I learned: I didn't really learn much today since I'm now quite familiar with the process of starting the GR00T fine-tuning script. I do wonder, however, what hyperparameters exist for GR00T, and how they were chosen for this course. Maybe this would be worth looking into in more detail in the future.
 - What's next: I'll finish the full GR00T fine-tuning run tomorrow when I have more time.
+
+### 2026-10-30
+
+- What I did: I finished fine-tuning GR00T on the Brev instance today.
+- What I learned: Again, I didn't really learn much today since I essentially just repeated what I did yesterday.
+- What's next: I'll test the new `checkpoint-20000` checkpoint on the arm tomorrow to see how fine-tuning GR00T on a larger volume of entirely real recordings will impact its performance. I'm quite optimistic about how it will perform.
