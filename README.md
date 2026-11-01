@@ -694,3 +694,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I tested the new `checkpoint-20000` GR00T checkpoint on the arm today.
 - What I learned: The new `checkpoint-20000` checkpoint trained on 100 real examples seems to perform a bit better than the previous one trained on 25 real and 100 sim examples. I'm wondering if training on even more examples would make a meaningful difference in performance.
 - What's next: I'll decide where I want to go from here with this course/respository tomorrow.
+
+### 2026-11-01
+
+- What I did: I decided to do something a bit different today. I feel like, despite using them extensively in this course/repository, I don't have an intuitive and thorough understanding of how certain components actually work, like the GR00T model and some others, like Isaac Sim. I've decided to investigate these in more depth instead of performing more experiments, starting with the GR00T model. I have picked up somewhat of an understanding of how it works, but I have not directly investigated the exact architecture, how it was trained, etc. Today, I watched some videos and did some research on the GR00T model.
+- What I learned: I've been referring to the model as the "GR00T" model, but it's specifically "GR00T N1.6". It's a vision-language-action (VLA) model with a "two-brain" design, composed of a "slow thinking" "system 2" vision-language model (VLM), and a "fast thinking" "system 1" diffusion transformer (DiT). The system 2 vision-language model in GR00T N1.6 specifically makes use of the NVIDIA Cosmos-2B VLM, and system 1 is a 32-layer diffusion transformer.
+- What's next: I'm curious about what these 2 systems look like in the actual GR00T N1.6 code, and may investigate that tomorrow.
