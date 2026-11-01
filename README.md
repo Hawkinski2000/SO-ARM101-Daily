@@ -688,3 +688,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I finished fine-tuning GR00T on the Brev instance today.
 - What I learned: Again, I didn't really learn much today since I essentially just repeated what I did yesterday.
 - What's next: I'll test the new `checkpoint-20000` checkpoint on the arm tomorrow to see how fine-tuning GR00T on a larger volume of entirely real recordings will impact its performance. I'm quite optimistic about how it will perform.
+
+### 2026-10-31
+
+- What I did: I tested the new `checkpoint-20000` GR00T checkpoint on the arm today.
+- What I learned: The new `checkpoint-20000` checkpoint trained on 100 real examples seems to perform a bit better than the previous one trained on 25 real and 100 sim examples. I'm wondering if training on even more examples would make a meaningful difference in performance.
+- What's next: I'll decide where I want to go from here with this course/respository tomorrow.
