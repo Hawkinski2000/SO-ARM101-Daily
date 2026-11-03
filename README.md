@@ -700,3 +700,14 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I decided to do something a bit different today. I feel like, despite using them extensively in this course/repository, I don't have an intuitive and thorough understanding of how certain components actually work, like the GR00T model and some others, like Isaac Sim. I've decided to investigate these in more depth instead of performing more experiments, starting with the GR00T model. I have picked up somewhat of an understanding of how it works, but I have not directly investigated the exact architecture, how it was trained, etc. Today, I watched some videos and did some research on the GR00T model.
 - What I learned: I've been referring to the model as the "GR00T" model, but it's specifically "GR00T N1.6". It's a vision-language-action (VLA) model with a "two-brain" design, composed of a "slow thinking" "system 2" vision-language model (VLM), and a "fast thinking" "system 1" diffusion transformer (DiT). The system 2 vision-language model in GR00T N1.6 specifically makes use of the NVIDIA Cosmos-2B VLM, and system 1 is a 32-layer diffusion transformer.
 - What's next: I'm curious about what these 2 systems look like in the actual GR00T N1.6 code, and may investigate that tomorrow.
+
+### 2026-11-02
+
+- What I did: I read some of the model code in the [Isaac-GR00T repository](https://github.com/NVIDIA/Isaac-GR00T/tree/main) today.
+- What I learned: One thing I found interesting is that the `Gr00tN1d7` model uses a `Qwen3Backbone` class as the "slow thinking" "system 2" vision-language model that I mentioned yesterday. It's a bit confusing, but this actually is the NVIDIA Cosmos-Reason2-2B model, which is based on the Qwen3-VL-Instruct architecture. It's also interesting to see that the actual forward pass of `Gr00tN1d7` is literally just:
+  ```python
+  backbone_outputs = self.backbone(backbone_inputs)
+  action_outputs = self.action_head.get_action(backbone_outputs, action_inputs, options)
+  ```
+  where `backbone` is the Cosmos-Reason2-2B model, or "system 2", and `action_head` is the diffusion transformer action head, or "system 1". It seems surprisngly simple, and the heavily simplified diagrams portraying GR00T as a "two-brain model" with two "systems" aren't actually that far off.
+- What's next: I'm still curious about the GR00T model, specifically with how it was trained. I may investigate this in more detail tomorrow.
