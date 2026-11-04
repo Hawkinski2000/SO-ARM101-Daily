@@ -711,3 +711,9 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
   ```
   where `backbone` is the Cosmos-Reason2-2B model, or "system 2", and `action_head` is the diffusion transformer action head, or "system 1". It seems surprisngly simple, and the heavily simplified diagrams portraying GR00T as a "two-brain model" with two "systems" aren't actually that far off.
 - What's next: I'm still curious about the GR00T model, specifically with how it was trained. I may investigate this in more detail tomorrow.
+
+### 2026-11-03
+
+- What I did: I looked into how the newest GR00T N1.7 was pretrained today.
+- What I learned: Apparently GR00T N1.7 was pretrained on about 32K hours of real demonstrations, about 20k of which was "EgoScale" egocentric video data, or first-person human video data. This is by far the most interesting part, because these egocentric recordings were essentially just of people doing random everyday tasks, not of them teleoperating robots or even doing tasks that GR00T was necessarily likely to be used for with an actual robot. What's especially mind-boggling is that the model's performance seemed to improve dramatically with more human data, probably by allowing the model to learn generic patterns in the physical manipulation of objects.
+- What's next: I've suddenly become eager to benchmark my GR00T model in some objective way on the vial-to-rack task. I have some ideas for how I might create a consistent, repeatable evaluation setup in my workspace that I might experiment with tomorrow. 
