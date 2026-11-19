@@ -801,3 +801,11 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 - What I did: I repeated the scenario I tested on 2026-11-15, but this time with a 90 degree rotation to the left instead of to the right. 
 - What I learned: Once again, the model achieved a 0% success rate on this scenario. For some reason, for all 20 trials, the arm would seem to just sort of freeze up and do nothing for the entire trial. This is noticably different behavior than what I saw on 2026-11-15 where the arm would at least make an attempt to approach the vial. I'm wondering if this difference in behavior might be due to the blue cap of the centrifuge vial being obstructed by the rack from the perspective of the external workspace camera. Perhaps GR00T learned to use this cap as an indicator of the vial's direction or something similar, and without seeing that it just becomes very confused.
 - What's next: I'm thinking this is a sufficient number of scenarios to test GR00T on for now. I think I might make a table or diagram of these so they're all organized in one place. Then I will likely begin collecting data for another fine-tuning run using the script I added on 2026-11-12.
+
+### 2026-11-18
+
+- What I did: I made the following diagram of the 9 scenarios I've tested the GR00T model on so far:
+![SO-101 vial to rack scenarios](./Vial%20To%20Rack%20Scenarios.drawio.svg)
+This should make talking about scenarios easier.
+- What I learned: Not much today since this was a fairly simple task.
+- What's next: I'm probably going to make a table of success rates so far on all of these scenarios.
