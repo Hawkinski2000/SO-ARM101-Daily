@@ -809,3 +809,24 @@ Daily build-log for the SO-ARM101. Updating every day, no exceptions, while work
 This should make talking about scenarios easier.
 - What I learned: Not much today since this was a fairly simple task.
 - What's next: I'm probably going to make a table of success rates so far on all of these scenarios.
+
+### 2026-11-19
+
+- What I did: I added a script to read my evaluation results CSV from testing GR00T on the 9 scenarios and output a `scenario_summary.csv` and an `overall_summary.csv`, which I converted to the following two markdown tables:
+  | scenario_id | total_trials | successful_trials | failed_trials | success_rate_pct | avg_duration_s | avg_success_duration_s |
+  |-------------|--------------|-------------------|---------------|------------------|----------------|------------------------|
+  | A           | 20           | 20                | 0             | 100.0            | 10.55          | 10.55                  |
+  | B           | 20           | 6                 | 14            | 30.0             | 26.29          | 17.57                  |
+  | C           | 20           | 0                 | 20            | 0.0              | 30.04          |                        |
+  | D           | 20           | 20                | 0             | 100.0            | 11.95          | 11.95                  |
+  | E           | 20           | 20                | 0             | 100.0            | 10.97          | 10.97                  |
+  | F           | 20           | 13                | 7             | 65.0             | 18.18          | 11.81                  |
+  | G           | 20           | 0                 | 20            | 0.0              | 30.04          |                        |
+  | H           | 20           | 0                 | 20            | 0.0              | 30.03          |                        |
+  | I           | 20           | 0                 | 20            | 0.0              | 30.03          |                        |
+
+  | total_scenarios | total_trials | successful_trials | failed_trials | success_rate_pct | avg_duration_s | avg_success_duration_s |
+  |-----------------|--------------|-------------------|---------------|------------------|----------------|------------------------|
+  | 9               | 180          | 79                | 101           | 43.89            | 22.01          | 11.75                  |
+- What I learned: I learned that the current GR00T checkpoint achieves an overall success rate of 43.89% across the 9 scenarios. This isn't amazing but not terrible either. I think this number can be increased drastically through targeted supplemental data collection and fine-tuning. 11.75 seconds per trial is also actually a fairly reasonable average duration. 
+- What's next: I'll try to start collecting some of this new supplemental data using estimates from the script I added on 2026-11-12. I may also add in rotations of the vials while collecting examples considering the model seems to struggle with those. 
