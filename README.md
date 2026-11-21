@@ -830,3 +830,22 @@ This should make talking about scenarios easier.
   | 9               | 180          | 79                | 101           | 43.89            | 22.01          | 11.75                  |
 - What I learned: I learned that the current GR00T checkpoint achieves an overall success rate of 43.89% across the 9 scenarios. This isn't amazing but not terrible either. I think this number can be increased drastically through targeted supplemental data collection and fine-tuning. 11.75 seconds per trial is also actually a fairly reasonable average duration. 
 - What's next: I'll try to start collecting some of this new supplemental data using estimates from the script I added on 2026-11-12. I may also add in rotations of the vials while collecting examples considering the model seems to struggle with those. 
+
+### 2026-11-20
+
+- What I did: I made some changes to the script I added on 2026-11-12. It now only outputs combinations of initial rack configuration, mat vial index, and destination slot that never appeared in my previous dataset of 100 real demonstrations, instead of using an arbitrary inverse-frequency weighting approach. It also outputs randomly sampled orientations for each vial on the mat, including either vertical orientations, rotations right or left by 45 degrees, or rotations right or left by 90 degrees.
+- What I learned: I'll be collecting another 100 examples, which will be composed of 3-4 examples each of 32 combinations of initial rack configuration, mat vial index, and destination slot that were missing from my previous dataset that I fine-tuned GR00T on.
+  Below is an example output for 10 demonstrations, where vial slot indices represent the 4 slots in the rack traversed clockwise, starting at the top left. `initial_vial_slots` represent which slots are already occupied by vials, and `chosen_vial_mat_index` represents which vial on the mat should be picked up relative to the others, if any, from left to right.
+  | initial_vial_slots | chosen_vial_mat_index | chosen_vial_slot | mat_vial_0_orientation | mat_vial_1_orientation | mat_vial_2_orientation |
+  |--------------------|-----------------------|------------------|------------------------|------------------------|------------------------|
+  | 0                  | 1                     | 3                | vertical               | 90_right               |                        |
+  | 0                  | 1                     | 2                | 90_right               | vertical               |                        |
+  | 02                 | 0                     | 3                | 45_right               |                        |                        |
+  | 0                  | 1                     | 2                | 45_left                | 90_right               |                        |
+  | Empty              | 1                     | 2                | 45_left                | vertical               | vertical               |
+  | 2                  | 1                     | 0                | 45_right               | vertical               |                        |
+  | Empty              | 1                     | 2                | 45_right               | 90_right               | 45_left                |
+  | Empty              | 2                     | 3                | vertical               | 90_right               | 45_right               |
+  | 2                  | 0                     | 0                | vertical               | vertical               |                        |
+  | 1                  | 1                     | 3                | vertical               | 45_right               |                        |
+- What's next: I'm going to try collecting about 30-50 of these examples tomorrow.
