@@ -862,3 +862,9 @@ This should make talking about scenarios easier.
 - What I did: I modified the collection plan script to also output `mat_vial_0_position`, `mat_vial_1_position`, and `mat_vial_2_position` columns which specify random vertical positions of the vial(s) on the mat to diversify the configurations a bit more, where the position options are `top`, `center`, or `bottom`. I also collected another 20 examples, but this time including these random vertical positions.
 - What I learned: While it felt strange at first, I'm getting more efficient at setting up these very specific workspace configurations before each demonstration. I also think these configurations look a bit more realistic and diverse now that the vertical position of each vial on the mat is also randomized.
 - What's next: I'll try to record another 10-20 examples tomorrow.
+
+### 2026-11-23
+
+- What I did: I just recorded 10 more demonstrations today, so I'm at 40 now.
+- What I learned: Not much, unless you count becoming more efficient at setting up these workspace configurations. 
+- What's next: I'll record another 10-20 examples tomorrow.
