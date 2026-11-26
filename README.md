@@ -874,3 +874,9 @@ This should make talking about scenarios easier.
 - What I did: I recorded another 10 examples today, so now I'm at 50.
 - What I learned: Again, not really much today. I'm hoping to record some larger batches over the next few days to get this recording process done sooner.
 - What's next: I'll record another 10-20 demonstrations on the arm tomorrow.
+
+### 2026-11-25
+
+- What I did: I recorded yet another 10 demonstrations today. I've completed 60 of the 100 now.
+- What I learned: Once again, there wasn't much to learn today besides improving at setting up these demonstrations.
+- What's next: I'm aiming to record at least 20 examples tomorrow, so I should be able to start fine-tuning GR00T soon.
