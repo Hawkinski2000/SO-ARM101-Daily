@@ -880,3 +880,9 @@ This should make talking about scenarios easier.
 - What I did: I recorded yet another 10 demonstrations today. I've completed 60 of the 100 now.
 - What I learned: Once again, there wasn't much to learn today besides improving at setting up these demonstrations.
 - What's next: I'm aiming to record at least 20 examples tomorrow, so I should be able to start fine-tuning GR00T soon.
+
+### 2026-11-26
+
+- What I did: I recorded another 20 examples today, bringing me to 80 total.
+- What I learned: Again, not much. I'm hoping the evaluation process of the new GR00T checkpoint after fine-tuning on this new supplemental data will be a bit more educational than these recording sessions.
+- What's next: I'll finish up recording the final 20 episodes tomorrow. I'll start fine-tuning GR00T either right after that or on Saturday.
