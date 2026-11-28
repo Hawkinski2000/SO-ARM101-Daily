@@ -886,3 +886,9 @@ This should make talking about scenarios easier.
 - What I did: I recorded another 20 examples today, bringing me to 80 total.
 - What I learned: Again, not much. I'm hoping the evaluation process of the new GR00T checkpoint after fine-tuning on this new supplemental data will be a bit more educational than these recording sessions.
 - What's next: I'll finish up recording the final 20 episodes tomorrow. I'll start fine-tuning GR00T either right after that or on Saturday.
+
+### 2026-11-27
+
+- What I did: I recorded the final 20 demonstrations today.
+- What I learned: once again, there wasn't much to learn today. Tomorrow should be more interesting if I have time to evaluate the new GR00T checkpoint after fine-tuning.
+- What's next: I'll merge this new dataset of 100 with the previous one and start fine-tuning GR00T on the 200 examples tomorrow.
